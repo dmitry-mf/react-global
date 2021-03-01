@@ -1,4 +1,4 @@
-import { testFunction } from './index';
+const testFunction = () => ('done');
 
 describe('function test', () => {
     test('expected string', () => {
