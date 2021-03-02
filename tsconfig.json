@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+      "moduleResolution": "node",
       "outDir": "./dist/",
       "noImplicitAny": true,
       "module": "es6",
@@ -7,6 +8,13 @@
       "jsx": "react",
       "allowJs": true,
       "allowSyntheticDefaultImports": true,
+      "baseUrl": "src",
+      "paths": {
+        "@src": ["/"],
+        "@components": ["components"],
+        "@pages": ["pages"],
+        "@styles": ["styles"],
+      }
     },
     "include": [
       "src",
