@@ -1,3 +1,4 @@
-@import './common';
-@import './variables/index.scss';
-@import './pages/index.scss';
+@forward './variables/';
+@forward './common';
+@forward './pages/';
+@forward './components/'

@@ -1,2 +1,3 @@
-export * from './layout/index';
-export * from './ui-kit/index';
+export * from './layout';
+export * from './ui-kit';
+

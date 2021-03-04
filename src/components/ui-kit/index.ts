@@ -1,2 +1,4 @@
-export * from './text/index';
-export * from './controls/index';
+export * from './text';
+export * from './controls';
+export * from './logo'
+

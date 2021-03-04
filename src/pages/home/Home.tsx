@@ -1,12 +1,11 @@
 import React from "react";
-import { Header, Main, Footer } from '@components';
+import { Main, Footer, Logo } from '@components';
+import { HomeHeader } from './components/';
 
-export const Home: React.FC<{}> = (props) => {
+export const Home: React.FC<{}> = () => {
     return (
         <>
-            <Header>
-                hello
-            </Header>
+            <HomeHeader />
             <Main>
 
             </Main>

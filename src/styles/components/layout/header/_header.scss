@@ -1,12 +1,52 @@
+@use '@styles/variables/palette' as *;
+
 .header-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 400px;
 
-    &_background-cards {
-        background: #dc143c;
+    &__row {
+        display: flex;
+        
+        &-d-row {
+            flex-direction: row;
+        }
+
+        &-d-col {
+            flex-direction: column;
+        }
+
+        &-items-v-center {
+            align-items: center;
+        }
+        
+
+        &-items-h-between {
+            justify-content: space-between;
+        }
+
+        &-items-h-center {
+            justify-content: center;
+        }
+
+        &-stretch {
+            height: 100%;
+        }
+    }
+
+    &_size_lg {
+        width: 100%;
+        padding: 2% 6%;
+    }
+
+    &_center {
+        justify-content: center;
+    }
+
+    &_start {
+        justify-content: start;
+    }
+
+    &_theme_main {
+        background: $tundora;
     }
 }

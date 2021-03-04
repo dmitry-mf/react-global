@@ -1,0 +1,49 @@
+@use '@styles/variables/palette' as *;
+
+.button {
+    &_common {
+        border: none;
+        outline: 0;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    &_red {
+        background-color: $carnation;
+    }
+
+    &_transparent {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    &_lg {
+        padding: 16px 20px;
+        max-width: 225px;
+    }
+
+    &_md {
+        padding: 12px 16px;
+        max-width: 175px;
+    }
+
+    &_sm {
+        padding: 8px 12px;
+        max-width: 125px;
+    }
+
+    &__content {
+        text-transform: uppercase;
+
+        &_white {
+            color: $solidWhite;
+        }
+
+        &_red {
+            color: $carnation;
+        }
+
+        &_bold {
+            font-size: 1.2rem;
+        }
+    }
+}
