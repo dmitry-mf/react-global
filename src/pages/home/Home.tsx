@@ -10,7 +10,7 @@ export const Home: React.FC<{}> = () => {
 
             </Main>
             <Footer>
-                
+                <Logo center/>
             </Footer>
         </>
     )

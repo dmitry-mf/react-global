@@ -5,6 +5,12 @@
         color: $carnation;
     }
 
+    &_center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     &__text {
         &_bold {
             font-weight: 900;

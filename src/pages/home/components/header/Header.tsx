@@ -1,6 +1,8 @@
 import React from "react";
-import { Header, Logo, HeaderRow } from '@components';
+import { Header, Logo, HeaderRow, Headline } from '@components';
 import { AddMovieBtn } from '../buttons';
+import { SearchMovie } from './SearchMovie';
+
 
 export const HomeHeader: React.FC<{}> = () => {
     return (
@@ -10,11 +12,7 @@ export const HomeHeader: React.FC<{}> = () => {
                 <AddMovieBtn />
             </HeaderRow>
             <HeaderRow dCol hCenter vCenter>
-                <h1>FIND YOUR MOVIE</h1>
-                <div>
-                    <input></input>
-                    <button>SEARCH</button>
-                </div>
+                <SearchMovie />
             </HeaderRow>
         </Header>
     )

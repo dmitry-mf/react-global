@@ -49,4 +49,17 @@
     &_theme_main {
         background: $tundora;
     }
+
+    &__search-wrapper {
+        display: flex;
+        flex-direction: column;
+        
+        &_wide {
+            width: 100%;
+        }
+
+        &_padding-h {
+            padding: 0 70px;
+        }
+    }
 }
