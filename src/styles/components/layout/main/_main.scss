@@ -1,0 +1,7 @@
+@use '@styles/variables/palette' as *;
+
+.main {
+    &_dark {
+        background-color: $mineShaft;
+    }
+}

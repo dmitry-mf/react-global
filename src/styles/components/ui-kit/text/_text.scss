@@ -1,0 +1,19 @@
+@use '@styles/variables/palette' as *;
+
+.text {
+    display: flex;
+    align-items: center;
+    
+    &_lg {
+        text-transform: uppercase;
+        font-size: 1.2rem;
+    }
+
+    &_white {
+        color: $solidWhite;
+    }
+
+    &_gray {
+        color: $emperor;
+    }
+}

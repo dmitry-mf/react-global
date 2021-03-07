@@ -1,0 +1,19 @@
+@use '@styles/variables/palette' as *;
+
+.icon {
+    &_arrow-up {
+        width: 0; 
+        height: 0; 
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-bottom: 7px solid $carnation;
+    }
+      
+    &_arrow-down {
+        width: 0; 
+        height: 0; 
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-top: 7px solid $carnation;
+    }
+}

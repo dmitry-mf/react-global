@@ -13,11 +13,6 @@ export const HeaderContent: React.FC<{classNames?: string}> = (
         'header-content_blur',
         'header-content_dark'
     );
-
-    const overlayCn = cx(
-        'header-content__overlay',
-        'header-content__overlay_dark',
-    );
     
     return (
         <>
