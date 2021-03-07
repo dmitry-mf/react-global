@@ -38,6 +38,19 @@ module.exports = {
     ],
     module: {
         rules: [
+			{
+				test: /\.(png|jpe?g|gif)$/i,
+				use: [
+				  {
+					loader: 'file-loader',
+					options: {
+					  publicPath: 'dist',
+					  outputPath: 'assets',
+					  useRelative: true,
+					}
+				  }
+				]
+			},
             {
                 test: /\.m?js$/,
                 exclude: /node_modules/,

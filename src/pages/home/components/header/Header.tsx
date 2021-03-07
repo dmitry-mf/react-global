@@ -1,19 +1,21 @@
 import React from "react";
-import { Header, Logo, HeaderRow, Headline } from '@components';
+import { Header, Logo, HeaderRow, HeaderContent } from '@components';
 import { AddMovieBtn } from '../buttons';
-import { SearchMovie } from './SearchMovie';
+import { SearchMovie } from './search-form';
 
 
 export const HomeHeader: React.FC<{}> = () => {
     return (
         <Header>
-            <HeaderRow hBetween>
-                <Logo />
-                <AddMovieBtn />
-            </HeaderRow>
-            <HeaderRow dCol hCenter vCenter>
-                <SearchMovie />
-            </HeaderRow>
+            <HeaderContent>
+                <HeaderRow hBetween dRow>
+                    <Logo />
+                    <AddMovieBtn />
+                </HeaderRow>
+                <HeaderRow dCol paddingLg>
+                    <SearchMovie />
+                </HeaderRow>
+            </HeaderContent>
         </Header>
     )
 }

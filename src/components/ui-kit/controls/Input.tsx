@@ -1,13 +1,16 @@
 import React from "react";
-// import cn from "classnames/bind";
-// import styles from './styles/_common.scss';
-// import './styles/index.scss';
-// const cx = cn.bind(styles);
 
-export const Input: React.FC<{}> = (props) => {
+export const Input: React.FC<{
+    classNames: string,
+    props?: {}
+}> = ({
+    classNames,
+    props,
+    children
+}) => {
     return (
-        <input>
-            {props.children}
+        <input className={classNames} {...props}>
+            {children}
         </input>
     )
 }

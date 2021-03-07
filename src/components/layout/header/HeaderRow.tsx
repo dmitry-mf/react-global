@@ -10,16 +10,18 @@ export const HeaderRow: React.FC<{
     stretch?: boolean,
     dRow?: boolean,
     dCol?: boolean,
+    paddingLg?: boolean
 }> = (
-    { children, hCenter, hBetween, vCenter, stretch, dRow, dCol }) => {
+    { children, hCenter, hBetween, vCenter, stretch, dRow, dCol, paddingLg }) => {
     const defaultClassNames = cx({
-        'header-container__row': true,
-        'header-container__row-items-h-center': hCenter,
-        'header-container__row-items-h-between': hBetween,
-        'header-container__row-items-v-center': vCenter,
-        'header-container__row-stretch': stretch,
-        'header-container__row-d-row': dRow,
-        'header-container__row-d-col': dCol,
+        'header__row': true,
+        'header__row-items-h-center': hCenter,
+        'header__row-items-h-between': hBetween,
+        'header__row-items-v-center': vCenter,
+        'header__row-stretch': stretch,
+        'header__row-d-row': dRow,
+        'header__row-d-col': dCol,
+        'header__row_padding-h-lg': paddingLg,
     });
     return (
         <div className={defaultClassNames}>

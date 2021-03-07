@@ -7,10 +7,9 @@ export const Header: React.FC<{classNames?: string}> = (
     {classNames = '', children}
 ) => {
     const defaultClassNames = cx(
-        'header-container',
-        'header-container_size_lg',
-        'header-container_start',
-        'header-container_theme_main',
+        'header',
+        'header_center',
+        'header_theme-main'
     );
     
     return (
