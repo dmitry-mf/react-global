@@ -1,0 +1,32 @@
+@use '@styles/variables/palette' as *;
+
+.headline {
+    display: flex;
+    text-transform: uppercase;
+    margin: 45px 0;
+
+    &_center {
+        justify-content: center;
+        align-items: center;
+    }
+
+    &_left {
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    &_right {
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    &_solid-white {
+        color: $solidWhite;
+    }
+
+    &_text-normal {
+        font-size: 2.3rem;
+        font-weight: 100;
+        letter-spacing: 3px;
+    }
+}

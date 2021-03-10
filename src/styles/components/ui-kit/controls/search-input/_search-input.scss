@@ -1,0 +1,14 @@
+@use '@styles/variables/palette' as *;
+
+.search-input {
+    font-size: 1.2rem;
+    padding: 15px;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    color: $solidWhite;
+
+    &_transparent {
+        background: rgba(50, 50, 50, 0.7)
+    }
+}

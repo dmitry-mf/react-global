@@ -1,0 +1,45 @@
+@use '@styles/variables/palette' as *;
+
+.text {
+    display: flex;
+    align-items: center;
+
+    &_sm {
+        text-transform: uppercase;
+        font-size: 1rem;
+    }
+
+    &_md {
+        text-transform: uppercase;
+        font-size: 1.1rem;
+    }
+    
+    &_lg {
+        text-transform: uppercase;
+        font-size: 1.2rem;
+    }
+
+    &_normal {
+        text-transform: none;
+    }
+
+    &_bold {
+        font-weight: bold;
+    }
+
+    &_white {
+        color: $solidWhite;
+    }
+
+    &_gray {
+        color: $emperor;
+    }
+
+    &_light-gray {
+        color: $lightGray;
+    }
+
+    &_grey {
+        color: $grey;
+    }
+}

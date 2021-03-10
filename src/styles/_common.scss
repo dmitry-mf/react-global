@@ -1,0 +1,72 @@
+@use './variables/palette' as *;
+
+* {
+    box-sizing: border-box;
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    font-family: sans-serif;
+}
+
+html {
+    background-color: $emperor;
+}
+
+.padding-h {
+    &_left {
+        &_10px {
+            padding-left: 10px;
+        }
+    }
+
+    &_right {
+        &_10px {
+            padding-right: 10px;
+        }
+    }
+}
+
+.padding-v {
+    &_top {
+        &_10px {
+            padding-top: 10px;
+        }
+
+        &_30px {
+            padding-top: 30px;
+        }
+    }
+
+    &_bottom {
+        &_10px {
+            padding-bottom: 10px;
+        }
+
+        &_30px {
+            padding-bottom: 30px;
+        }
+    }
+}
+
+.margin-h {
+    &_left {
+        &_10px {
+            margin-left: 10px;
+        }
+    }
+
+    &_right {
+        &_10px {
+            margin-right: 10px;
+        }
+    }
+}

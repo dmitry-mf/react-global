@@ -1,0 +1,25 @@
+@use '@styles/variables/palette' as *;
+
+.logo-container {
+    &_carnation {
+        color: $carnation;
+    }
+
+    &_center {
+        text-align: center;
+    }
+
+    &__text {
+        &_bold {
+            font-weight: 900;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+        }
+    
+        &_normal {
+            font-weight: normal;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+    }
+}

@@ -1,0 +1,20 @@
+@use '@styles/variables/palette' as *;
+
+.link {
+    display: flex;
+    cursor: pointer;
+    padding: 10px 25px;
+    position: relative;
+
+    &_active {
+        &::after {
+            position: absolute;
+            z-index: 1;
+            left: 0;
+            bottom: -3px;
+            content: '';
+            width: 100%;
+            border-bottom: 3px solid $carnation;
+        }
+    }
+}

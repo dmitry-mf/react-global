@@ -1,0 +1,26 @@
+@use '@styles/variables/palette' as *;
+
+.navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+
+    &_underline {
+        &::after {
+            position: absolute;
+            content: '';
+            bottom: -2px;
+            width: 100%;
+            border-bottom: 2px solid $emperor;
+        }
+
+        &::before {
+            position: absolute;
+            bottom: -3px;
+            content: '';
+            width: 100%;
+            border-bottom: 1px solid $solidBlack;
+        }
+    }
+}

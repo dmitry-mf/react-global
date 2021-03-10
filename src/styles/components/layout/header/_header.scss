@@ -1,0 +1,69 @@
+@use '@styles/variables/palette' as *;
+
+.header {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 10px;
+
+    &__row {
+        display: flex;
+        
+        &-d-row {
+            flex-direction: row;
+        }
+
+        &-d-col {
+            flex-direction: column;
+        }
+
+        &-items-v-center {
+            align-items: center;
+        }
+        
+
+        &-items-h-between {
+            justify-content: space-between;
+        }
+
+        &-items-h-center {
+            justify-content: center;
+        }
+
+        &-stretch {
+            height: 100%;
+        }
+
+        &_padding-h-lg {
+            padding: 0 70px;
+        }
+    }
+
+    &_center {
+        justify-content: center;
+    }
+
+    &_start {
+        justify-content: start;
+    }
+
+    &_theme-main {
+        background: $tundora;
+        background-image: url('/src/assets/movie-posters-wallpapers.jpg');
+    }
+}
+
+.header-content {
+    &_dark {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    &_size_lg {
+        width: 100%;
+        padding: 1% 3% 8% 3%;
+    }
+
+    &_blur {
+        backdrop-filter: blur(4px);
+    }
+}

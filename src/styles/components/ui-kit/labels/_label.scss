@@ -1,0 +1,7 @@
+@use '@styles/variables/palette' as *;
+
+.movie-label {
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: 1px solid $emperor;
+}
