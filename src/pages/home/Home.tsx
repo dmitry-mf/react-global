@@ -1,6 +1,6 @@
 import React from "react";
 import { Footer, Logo } from '@components';
-import { HomeHeader, HomeMain } from './components/';
+import { HomeHeader, HomeMain, AddMovieModal } from './components/';
 
 export const Home: React.FC<{}> = () => {
     return (
@@ -10,6 +10,11 @@ export const Home: React.FC<{}> = () => {
             <Footer>
                 <Logo center/>
             </Footer>
+            <AddMovieModal
+                show={true}
+                onConfirm={() => {}}
+                onDecline={() => {}}
+            />
         </>
     )
 }

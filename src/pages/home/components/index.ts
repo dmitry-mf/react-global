@@ -4,4 +4,6 @@ export * from './menu';
 export * from './main';
 export * from './counter';
 export * from './movies-list';
+export * from './modals';
+
 

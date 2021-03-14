@@ -1,0 +1,10 @@
+@use '@styles/variables/palette' as *;
+
+.modal-container {
+    margin: 0 auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 45%;
+    background-color: $mineShaft;
+    padding: 80px;
+}

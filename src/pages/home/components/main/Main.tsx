@@ -48,7 +48,7 @@ export const HomeMain: React.FC<{movies?: Movie[]}> = ({movies = moviesList}) =>
         <ErrorBoundary>
             <Main>
                 <HomeMenu />
-                <Counter count={39}/>
+                <Counter count={39} />
                 <MoviesList>
                     {movies.map((m, i) => (<MovieCard key={i} movie={m}/>))}
                 </MoviesList>

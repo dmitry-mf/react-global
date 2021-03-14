@@ -3,8 +3,11 @@ import cn from "classnames/bind";
 import styles from '@styles/components/ui-kit/buttons/index.scss';
 const cx = cn.bind(styles);
 
-export const Button: React.FC<{classNames?: string}> = (
-    { classNames, children }
+export const Button: React.FC<{
+    classNames?: string,
+    onClick?: () => void,
+}> = (
+    { classNames, onClick, children }
 ) => {
     const defaultClassNames = cx(
         'button',
@@ -12,7 +15,7 @@ export const Button: React.FC<{classNames?: string}> = (
         'button_md',
     );
     return (
-        <button className={classNames || defaultClassNames}>
+        <button onClick={onClick} className={classNames || defaultClassNames}>
             {children}
         </button>
     )
