@@ -19,6 +19,11 @@
         font-size: 1.2rem;
     }
 
+    &_h1 {
+        text-transform: uppercase;
+        font-size: 2rem;
+    }
+
     &_normal {
         text-transform: none;
     }
@@ -41,5 +46,9 @@
 
     &_grey {
         color: $grey;
+    }
+
+    &_red {
+        color: $carnation;
     }
 }

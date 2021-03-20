@@ -1,0 +1,16 @@
+.modal-footer {
+    padding-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &_content {
+        &-left {
+            justify-content: flex-start;
+        }
+
+        &-right {
+            justify-content: flex-end;
+        }
+    }
+}

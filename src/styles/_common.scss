@@ -21,7 +21,20 @@ html {
     background-color: $emperor;
 }
 
+h2 {
+    font-weight: normal;
+    margin: 0;
+}
+
 .padding-h {
+    &_10px {
+        padding: 0 10px;
+    }
+
+    &_15px {
+        padding: 0 15px;
+    }
+
     &_left {
         &_10px {
             padding-left: 10px;
@@ -36,6 +49,14 @@ html {
 }
 
 .padding-v {
+    &_10px {
+        padding: 10px 0;
+    }
+
+    &_15px {
+        padding: 15px 0;
+    }
+
     &_top {
         &_10px {
             padding-top: 10px;
@@ -58,6 +79,14 @@ html {
 }
 
 .margin-h {
+    &_10px {
+        margin: 10px 0;
+    }
+
+    &_15px {
+        margin: 15px 0;
+    }
+
     &_left {
         &_10px {
             margin-left: 10px;
@@ -68,5 +97,15 @@ html {
         &_10px {
             margin-right: 10px;
         }
+    }
+}
+
+.margin-v {
+    &_10px {
+        margin: 10px 0;
+    }
+
+    &_15px {
+        margin: 15px 0;
     }
 }

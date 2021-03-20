@@ -1,0 +1,10 @@
+@use '@styles/variables/palette' as *;
+
+.close {
+    position: absolute;
+    color: $solidWhite;
+    cursor: pointer;
+    top: 40px;
+    right: 40px;
+    font-size: 2rem;
+}

@@ -4,13 +4,15 @@ import { AddMovieBtn } from '../buttons';
 import { SearchMovie } from './search-form';
 
 
-export const HomeHeader: React.FC<{}> = () => {
+export const HomeHeader: React.FC<{
+    showModalHandler: () => void;
+}> = ({ showModalHandler }) => {
     return (
         <Header>
             <HeaderContent>
                 <HeaderRow hBetween dRow>
                     <Logo />
-                    <AddMovieBtn />
+                    <AddMovieBtn onClick={showModalHandler}/>
                 </HeaderRow>
                 <HeaderRow dCol paddingLg>
                     <SearchMovie />
