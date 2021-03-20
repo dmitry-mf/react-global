@@ -11,12 +11,7 @@ export const ModalHeader: React.FC<{classNames?: {}, title: string }> = (
         ...classNames,
     });
 
-    const headerCn = cx({
-        headline: true,
-        headline_left: true,
-        'headline_text-normal': true,
-        'headline_solid-white': true,
-    })
+    const headerCn = cx('text', 'text_h1', 'text_white')
     
     return (
         <header className={defaultClassNames}>

@@ -1,8 +1,9 @@
 export * from './Button';
 export * from './Input';
 export * from './ActionsButton';
-export * from './form-date';
-export * from './form-input';
-export * from './form-select';
+export * from './FormDate';
+export * from './FormInput';
+export * from './FormSelect';
+export * from './Close';
 
 

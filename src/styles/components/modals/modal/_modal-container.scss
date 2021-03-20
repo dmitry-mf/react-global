@@ -1,6 +1,7 @@
 @use '@styles/variables/palette' as *;
 
 .modal-container {
+    position: relative;
     margin: 0 auto;
     margin-top: 5%;
     margin-bottom: 5%;

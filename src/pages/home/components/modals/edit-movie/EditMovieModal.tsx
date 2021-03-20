@@ -1,7 +1,7 @@
 import React from "react";
 import {
     Overlay,
-    AddMovieForm,
+    EditMovieForm,
     Modal,
     ModalContent,
     ModalFooter,
@@ -9,7 +9,7 @@ import {
     Close,
 } from '@components';
 
-export const AddMovieModal: React.FC<{
+export const EditMovieModal: React.FC<{
     show: boolean,
     onConfirm: () => void;
     onDecline: () => void;
@@ -25,14 +25,14 @@ export const AddMovieModal: React.FC<{
             { show ? 
             <Overlay>
                 <Modal>
-                    <ModalHeader title={'add movie'}/>
+                    <ModalHeader title={'edit movie'}/>
                     <ModalContent>
-                        <AddMovieForm />
+                        <EditMovieForm />
                     </ModalContent>
                     <ModalFooter
                         onConfirm={onConfirm}
                         onDecline={onDecline}
-                        confirmContent={'submit'}
+                        confirmContent={'save'}
                         declineContent={'reset'}
                     />
                     <Close onClick={onClose}/>

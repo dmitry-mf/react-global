@@ -4,7 +4,9 @@ import cn from "classnames/bind";
 import styles from '@styles/components/ui-kit/buttons/index.scss';
 const cx = cn.bind(styles);
 
-export const AddMovieBtn: React.FC<{}> = () => {
+export const AddMovieBtn: React.FC<{
+    onClick: () => void,
+}> = ({ onClick }) => {
     const btnClasses = cx(
         'button',
         'button_common',
@@ -19,7 +21,7 @@ export const AddMovieBtn: React.FC<{}> = () => {
 
     return (
         <>
-            <Button classNames={btnClasses}>
+            <Button classNames={btnClasses} onClick={onClick}>
                 <span className={contentClasses}>+ add movie</span>
             </Button>
         </>
