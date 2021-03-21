@@ -43,14 +43,20 @@ const moviesList: Movie[] = [
     },
 ]
 
-export const HomeMain: React.FC<{movies?: Movie[]}> = ({movies = moviesList}) => {
+export const HomeMain: React.FC<{
+    movies?: Movie[],
+    onMovieClick: React.Dispatch<Movie>
+}> = ({
+    movies = moviesList,
+    onMovieClick,
+}) => {
     return (
         <ErrorBoundary>
             <Main>
                 <HomeMenu />
                 <Counter count={39} />
                 <MoviesList>
-                    {movies.map((m, i) => (<MovieCard key={i} movie={m}/>))}
+                    {movies.map((m, i) => (<MovieCard key={i} movie={m} onClick={onMovieClick}/>))}
                 </MoviesList>
             </Main>
         </ErrorBoundary>

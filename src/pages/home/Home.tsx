@@ -1,34 +1,35 @@
 import React from "react";
-import { Footer, Logo, ConfirmationDialog } from '@components';
-import { HomeHeader, HomeMain, AddMovieModal, EditMovieModal } from './components/';
+import { Footer, Logo, Movie } from '@components';
+import { HomeHeader, HomeMain, AddMovieModal, MovieDetailsHeader } from './components/';
+import { useModal } from '../../hooks';
 
 export const Home: React.FC<{}> = () => {
-    const [showAddMovie, setShowAddMovie] = React.useState(false);
+    //const dialogSettings = {
+    //    DialogContent: () => (<>Are you sure you want to delete this movie?</>),
+    //    dialogTitle: 'delete movie?',
+    //}
 
-    const closeAddMovieDialog = () => {
-        window.document.body.style.overflow = 'auto';
-        setShowAddMovie(false)
-    };
+    const [movie, setMovie] = React.useState<Movie>();
 
-    const openAddMovieDialog = () => {
-        window.document.body.style.overflow = 'hidden';
-        setShowAddMovie(true)
-    };
+    const [
+        openModal,
+        AddMovieDialog,
+    ] = useModal('add_movie_dialog', AddMovieModal);
+
+    const handleCloseMovieInfo = React.useCallback(() => setMovie(null), []);
 
     return (
         <>
-            <HomeHeader showModalHandler={openAddMovieDialog}/>
-            <HomeMain />
+            {
+                movie ?
+                <MovieDetailsHeader movieID={'1'} closeMovieDetails={handleCloseMovieInfo}/>
+                : <HomeHeader showModalHandler={openModal}/>
+            }
+            <HomeMain onMovieClick={setMovie}/>
             <Footer>
                 <Logo center/>
             </Footer>
-            <ConfirmationDialog
-                show={showAddMovie}
-                onConfirm={closeAddMovieDialog}
-                onClose={closeAddMovieDialog}
-                DialogContent={() => (<>Are you sure you want to delete this movie?</>)}
-                dialogTitle={'delete movie?'}
-            />
+            <AddMovieDialog />
         </>
     )
 }

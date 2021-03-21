@@ -10,36 +10,47 @@ import {
 } from '@components';
 
 export const EditMovieModal: React.FC<{
-    show: boolean,
+    closeModal: () => void;
     onConfirm: () => void;
     onDecline: () => void;
     onClose: () => void;
 }> = ({
-    show,
+    closeModal,
     onConfirm,
     onDecline,
     onClose,
 }) => {
+    const handleClose = React.useCallback(() => {
+        onClose && onClose();
+        closeModal();
+    }, []);
+
+    const handleConfirm = React.useCallback(() => {
+        onConfirm && onConfirm();
+        closeModal();
+    }, []);
+
+    const handleDecline = React.useCallback(() => {
+        onDecline && onDecline();
+        closeModal();
+    }, []);
+
     return (
-        <>
-            { show ? 
-            <Overlay>
-                <Modal>
-                    <ModalHeader title={'edit movie'}/>
+        <Overlay>
+            <Modal>
+                <ModalHeader title={'edit movie'} />
                     <ModalContent>
-                        <EditMovieForm />
-                    </ModalContent>
-                    <ModalFooter
-                        onConfirm={onConfirm}
-                        onDecline={onDecline}
-                        confirmContent={'save'}
-                        declineContent={'reset'}
-                    />
-                    <Close onClick={onClose}/>
-                </Modal>
-            </Overlay>
-            : null }
-        </>
+                    <EditMovieForm />
+                </ModalContent>
+                <ModalFooter
+                    onConfirm={handleConfirm}
+                    onDecline={handleDecline}
+                    confirmContent={'save'}
+                    declineContent={'reset'}
+                />
+                <Close onClick={handleClose} />
+            </Modal>
+        </Overlay>
     )
 }
 
