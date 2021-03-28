@@ -1,0 +1,13 @@
+@use '@styles/variables/palette' as *;
+
+.rating {
+    width: 75px;
+    height: 75px;
+    border: 1px solid $solidWhite;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $solidGreen;
+    font-size: 2rem;
+}

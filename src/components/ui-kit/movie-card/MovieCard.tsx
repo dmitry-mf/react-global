@@ -54,7 +54,10 @@ const MovieCardInfo: React.FC<{movie: Movie}> = ({ movie }) => {
     )
 }
 
-export const MovieCard: React.FC<{movie: Movie}> = ({ movie }) => {
+export const MovieCard: React.FC<{
+    movie: Movie,
+    onClick: (movie: Movie) => void;
+}> = ({ movie, onClick }) => {
     const movieCardCn = cx(
         'movie-card',
     );
@@ -63,8 +66,12 @@ export const MovieCard: React.FC<{movie: Movie}> = ({ movie }) => {
         'movie-card__image'
     )
 
+    const handleClick = React.useCallback(() => {
+        onClick(movie);
+    }, [movie])
+
     return (
-        <div className={movieCardCn}>
+        <div className={movieCardCn} onClick={handleClick}>
             <img className={movieCardImageCn} src={movie.cover}/>
             <MovieCardInfo movie={movie}/>
             <ActionsButton />

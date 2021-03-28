@@ -27,13 +27,13 @@ const ConfirmationDialogContent: React.FC<{}> = ({children}) => {
 }
 
 export const ConfirmationDialog: React.FC<{
-    show: boolean,
+    closeModal: () => void;
     onConfirm: () => void;
     onClose: () => void;
     DialogContent: React.FC;
     dialogTitle: string;
 }> = ({
-    show,
+    closeModal,
     onConfirm,
     onClose,
     DialogContent,
@@ -51,24 +51,30 @@ export const ConfirmationDialog: React.FC<{
         'button__content_bold'
     );
 
+    const handleConfirm = React.useCallback(() => {
+        onConfirm && onConfirm();
+        closeModal();
+    }, []);
+
+    const handleClose = React.useCallback(() => {
+        onClose && onClose();
+        closeModal();
+    }, []);
+
     return (
-        <>
-            { show ? 
-                <Overlay>
-                    <Modal>
-                        <ModalHeader title={dialogTitle}/>
-                        <ConfirmationDialogContent>
-                            <DialogContent />
-                        </ConfirmationDialogContent>
-                        <ModalFooterContainer contentRight>
-                            <Button onClick={onConfirm} classNames={confirmBtnCn}>
-                                <span className={confirmBtnContentCn}>confirm</span>
-                            </Button>
-                        </ModalFooterContainer>
-                        <Close onClick={onClose}/>
-                    </Modal>
-                </Overlay>
-            : null }
-        </>
+        <Overlay>
+            <Modal>
+                <ModalHeader title={dialogTitle} />
+                <ConfirmationDialogContent>
+                    <DialogContent />
+                </ConfirmationDialogContent>
+                <ModalFooterContainer contentRight>
+                    <Button onClick={handleConfirm} classNames={confirmBtnCn}>
+                        <span className={confirmBtnContentCn}>confirm</span>
+                    </Button>
+                </ModalFooterContainer>
+                <Close onClick={handleClose} />
+            </Modal>
+        </Overlay>
     )
 }

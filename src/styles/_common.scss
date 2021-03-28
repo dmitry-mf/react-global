@@ -26,6 +26,14 @@ h2 {
     margin: 0;
 }
 
+.padding-0 {
+    padding: 0;
+}
+
+.padding-15px {
+    padding: 15px;
+}
+
 .padding-h {
     &_10px {
         padding: 0 10px;
@@ -55,6 +63,10 @@ h2 {
 
     &_15px {
         padding: 15px 0;
+    }
+
+    &_25px {
+        padding: 25px 0;
     }
 
     &_top {
@@ -91,6 +103,10 @@ h2 {
         &_10px {
             margin-left: 10px;
         }
+
+        &_75px {
+            margin-left: 75px;
+        }
     }
 
     &_right {
@@ -108,4 +124,22 @@ h2 {
     &_15px {
         margin: 15px 0;
     }
+}
+
+.flex {
+    display: flex;
+
+    &-row {
+        flex-direction: row;
+    }
+
+    &-col {
+        flex-direction: column;
+    }
+
+    &-items_center {
+        align-items: center;
+    }
+
+    &__flex-item {}
 }

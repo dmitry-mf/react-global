@@ -10,36 +10,47 @@ import {
 } from '@components';
 
 export const AddMovieModal: React.FC<{
-    show: boolean,
-    onConfirm: () => void;
-    onDecline: () => void;
-    onClose: () => void;
+    closeModal: () => void;
+    onConfirm?: () => void;
+    onDecline?: () => void;
+    onClose?: () => void;
 }> = ({
-    show,
+    closeModal,
     onConfirm,
     onDecline,
     onClose,
 }) => {
+    const handleClose = React.useCallback(() => {
+        onClose && onClose();
+        closeModal();
+    }, []);
+
+    const handleConfirm = React.useCallback(() => {
+        onConfirm && onConfirm();
+        closeModal();
+    }, []);
+
+    const handleDecline = React.useCallback(() => {
+        onDecline && onDecline();
+        closeModal();
+    }, []);
+
     return (
-        <>
-            { show ? 
-            <Overlay>
-                <Modal>
-                    <ModalHeader title={'add movie'}/>
-                    <ModalContent>
-                        <AddMovieForm />
-                    </ModalContent>
-                    <ModalFooter
-                        onConfirm={onConfirm}
-                        onDecline={onDecline}
-                        confirmContent={'submit'}
-                        declineContent={'reset'}
-                    />
-                    <Close onClick={onClose}/>
-                </Modal>
-            </Overlay>
-            : null }
-        </>
+        <Overlay>
+            <Modal>
+                <ModalHeader title={'add movie'} />
+                <ModalContent>
+                    <AddMovieForm />
+                </ModalContent>
+                <ModalFooter
+                    onConfirm={handleConfirm}
+                    onDecline={handleDecline}
+                    confirmContent={'submit'}
+                    declineContent={'reset'}
+                />
+                <Close onClick={handleClose} />
+            </Modal>
+        </Overlay>
     )
 }
 
