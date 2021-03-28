@@ -27,7 +27,7 @@ export const useModal = (
 
     const Dialog = () => state ? ReactDOM.createPortal(
         <Modal {...settings} openModal={openModal} closeModal={closeModal}/>,
-        Container) : <></>;
+        Container) : null;
 
     return [
         openModal,

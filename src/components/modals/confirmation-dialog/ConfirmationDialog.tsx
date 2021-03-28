@@ -51,12 +51,12 @@ export const ConfirmationDialog: React.FC<{
         'button__content_bold'
     );
 
-    const handleConfirm = React.useCallback(async () => {
+    const handleConfirm = React.useCallback(() => {
         onConfirm && onConfirm();
         closeModal();
     }, []);
 
-    const handleClose = React.useCallback(async () => {
+    const handleClose = React.useCallback(() => {
         onClose && onClose();
         closeModal();
     }, []);

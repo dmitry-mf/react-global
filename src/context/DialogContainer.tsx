@@ -7,16 +7,9 @@ const DialogContext: React.Context<Array<ContextState>> = React.createContext([]
 const DialogDispatchContext: React.Context<undefined | ContextDispatch> = React.createContext(undefined);
 
 function action (state: ContextState[], payload: ContextState) {
-
-    if (payload.isOpen) {
-        return [...state, payload];
-    }
-
-    if (!payload.isOpen) {
-        return state.filter(dialog => dialog.name !== payload.name);
-    }
-
-    return state;
+    return payload.isOpen
+        ? [...state, payload]
+        : state.filter(dialog => dialog.name !== payload.name);
 }
 
 export const DialogContainer: React.FC = ({ children }) => {
