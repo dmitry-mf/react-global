@@ -2,6 +2,8 @@ import React from "react";
 import { Footer, Logo, Movie } from '@components';
 import { HomeHeader, HomeMain, AddMovieModal, MovieDetailsHeader } from './components/';
 import { useModal } from '../../hooks';
+import { useSelector, useDispatch } from 'react-redux';
+import { getMovies } from '../../store/movies/selectors';
 
 export const Home: React.FC<{}> = () => {
     //const dialogSettings = {
@@ -10,6 +12,7 @@ export const Home: React.FC<{}> = () => {
     //}
 
     const [movie, setMovie] = React.useState<Movie>();
+    const movies = useSelector(getMovies);
 
     const [
         openModal,
@@ -17,6 +20,8 @@ export const Home: React.FC<{}> = () => {
     ] = useModal('add_movie_dialog', AddMovieModal);
 
     const handleCloseMovieInfo = React.useCallback(() => setMovie(null), []);
+
+    console.log(movies);
 
     return (
         <>
