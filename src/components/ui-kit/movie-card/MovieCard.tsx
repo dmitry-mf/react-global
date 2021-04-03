@@ -2,16 +2,10 @@ import React from "react";
 import cn from "classnames/bind";
 import styles from '@styles/components/index.scss';
 import { Label, ActionsButton } from '@components';
+import { MovieData } from '../../../services/HomeService';
 const cx = cn.bind(styles);
 
-export interface Movie {
-    title: string;
-    year: number| string;
-    cover: string;
-    description: string;
-}
-
-const MovieCardInfo: React.FC<{movie: Movie}> = ({ movie }) => {
+const MovieCardInfo: React.FC<{movie: MovieData}> = ({ movie }) => {
     const movieCardInfoCn = cx(
         'movie-card__info'
     )
@@ -46,17 +40,17 @@ const MovieCardInfo: React.FC<{movie: Movie}> = ({ movie }) => {
             <div className={movieCardInfoCn}>
                 <span className={titleCn}>{movie.title}</span>
                 <Label classNames={labelCn}>
-                    <span className={yearCn}>{movie.year}</span>
+                    <span className={yearCn}>{movie.release_date}</span>
                 </Label>
             </div>
-            <div className={descriptionCn}>{movie.description}</div>
+            <div className={descriptionCn}>{movie.overview}</div>
         </>
     )
 }
 
 export const MovieCard: React.FC<{
-    movie: Movie,
-    onClick: (movie: Movie) => void;
+    movie: MovieData,
+    onClick: (movie: MovieData) => void;
 }> = ({ movie, onClick }) => {
     const movieCardCn = cx(
         'movie-card',
@@ -72,7 +66,7 @@ export const MovieCard: React.FC<{
 
     return (
         <div className={movieCardCn} onClick={handleClick}>
-            <img className={movieCardImageCn} src={movie.cover}/>
+            <img className={movieCardImageCn} src={movie.poster_path}/>
             <MovieCardInfo movie={movie}/>
             <ActionsButton />
         </div>

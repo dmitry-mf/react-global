@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import cn from "classnames/bind";
 import styles from '@styles/components/index.scss';
 import { Input } from '@components';
 const cx = cn.bind(styles);
 
 export const FormInput: React.FC<{
-    inputProps?: {},
-    title: string,
-}> = ({ inputProps, title }) => {
+    name: string;
+    title: string;
+    value: string;
+    onChange: (name: string, value: string) => void;
+}> = ({ name, title, value, onChange }) => {
 
     const formInputCn = cx(
         'form-input',
@@ -31,6 +33,15 @@ export const FormInput: React.FC<{
         'form-control',
         'padding-v_10px',
     );
+
+    const handeChange = useCallback((e: React.SyntheticEvent<HTMLInputElement>) => {
+        onChange(name, e.currentTarget.value)
+    }, [value])
+
+    const inputProps = useMemo(() => ({
+        onChange: handeChange,
+        value,
+    }), [value]);
 
     return (
         <div className={formCn}>

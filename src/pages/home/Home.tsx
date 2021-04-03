@@ -1,9 +1,10 @@
-import React from "react";
-import { Footer, Logo, Movie } from '@components';
+import React, { Dispatch, useCallback, useEffect } from "react";
+import { Footer, Logo } from '@components';
 import { HomeHeader, HomeMain, AddMovieModal, MovieDetailsHeader } from './components/';
 import { useModal } from '../../hooks';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMovies } from '../../store/movies/selectors';
+import { fetchMovies } from '../../store/movies/actions';
 
 export const Home: React.FC<{}> = () => {
     //const dialogSettings = {
@@ -11,17 +12,28 @@ export const Home: React.FC<{}> = () => {
     //    dialogTitle: 'delete movie?',
     //}
 
-    const [movie, setMovie] = React.useState<Movie>();
+    const [movie, setMovie] = React.useState<any>();
+
+    const dispatch: Dispatch<any> = useDispatch();
+
+    const updateMoviesList = useCallback(() => {
+        dispatch(fetchMovies());
+    }, []);
+
     const movies = useSelector(getMovies);
 
     const [
         openModal,
         AddMovieDialog,
-    ] = useModal('add_movie_dialog', AddMovieModal);
+    ] = useModal('add_movie_dialog', AddMovieModal, {
+        onClose: updateMoviesList,
+    });
 
     const handleCloseMovieInfo = React.useCallback(() => setMovie(null), []);
 
-    console.log(movies);
+    useEffect(() => {
+        updateMoviesList();
+    }, []);
 
     return (
         <>
@@ -30,7 +42,7 @@ export const Home: React.FC<{}> = () => {
                 <MovieDetailsHeader movieID={'1'} closeMovieDetails={handleCloseMovieInfo}/>
                 : <HomeHeader showModalHandler={openModal}/>
             }
-            <HomeMain onMovieClick={setMovie}/>
+            <HomeMain onMovieClick={setMovie} movies={movies}/>
             <Footer>
                 <Logo center/>
             </Footer>

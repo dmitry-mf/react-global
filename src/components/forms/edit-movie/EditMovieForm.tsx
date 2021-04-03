@@ -19,13 +19,13 @@ const MovieID: React.FC<{id: string}> = ({ id }) => {
 export const EditMovieForm: React.FC<{}> = () => {
     return (
         <>
-            <MovieID id={'1234567890'}/>
-            <FormInput title={'Title'}/>
-            <FormInput title={'Release date'}/>
-            <FormInput title={'Movie url'}/>
-            <FormInput title={'Genre'}/>
-            <FormInput title={'Overview'}/>
-            <FormInput title={'Runtime'}/>
+            <MovieID id={'1234567890'} />
+            <FormInput title={'Title'} name={''} value={''} onChange={() => {}}/>
+            <FormInput title={'Release date'} name={''} value={''} onChange={() => {}}/>
+            <FormInput title={'Movie url'} name={''} value={''} onChange={() => {}}/>
+            <FormInput title={'Genre'} name={''} value={''} onChange={() => {}}/>
+            <FormInput title={'Overview'} name={''} value={''} onChange={() => {}}/>
+            <FormInput title={'Runtime'} name={''} value={''} onChange={() => {}}/>
         </>
     )
 }
