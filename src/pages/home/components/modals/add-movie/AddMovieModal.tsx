@@ -61,7 +61,6 @@ export const AddMovieModal: React.FC<{
     }, [fields]);
 
     const handleClose = React.useCallback(() => {
-        console.log(onClose);
         onClose && onClose();
         closeModal();
     }, []);
