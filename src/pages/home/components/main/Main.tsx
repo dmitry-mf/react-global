@@ -1,4 +1,5 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState, Dispatch } from 'react';
+import { useDispatch } from 'react-redux';
 import { Main, MovieCard, ErrorBoundary, ConfirmationDialog } from '@components';
 import { HomeMenu } from '../menu';
 import { Counter } from '../counter';
@@ -6,6 +7,7 @@ import { MoviesList } from '../movies-list';
 import { MoviesData, MovieData } from '../../../../services/HomeService';
 import { EditMovieModal } from '../modals';
 import { useModal } from '../../../../hooks';
+import { deleteMovieByID } from '../../../../store/movies/actions';
 
 export const HomeMain: React.FC<{
     movies: MoviesData;
@@ -14,9 +16,10 @@ export const HomeMain: React.FC<{
 }> = ({
     movies,
     onMovieClick,
-    updateMoviesList,
 }) => {
-    const [ editableMovie, setEditableMovie  ] = useState<MovieData>(null);
+    const dispatch: Dispatch<any> = useDispatch();
+    
+    const [ editableMovie, setEditableMovie ] = useState<MovieData>(null);
 
     const [
         openModal,
@@ -28,11 +31,6 @@ export const HomeMain: React.FC<{
         DeleteMovieDialog,
     ] = useModal('delete_movie_dialog', ConfirmationDialog);
 
-    const dialogSettings = useMemo(() => ({
-        DialogContent: () => (<>Are you sure you want to delete {editableMovie.title}?</>),
-        dialogTitle: 'delete movie?',
-    }), [editableMovie]);
-
     const handleEditMovie = useCallback((movie: MovieData) => {
         setEditableMovie(movie);
         openModal();
@@ -43,10 +41,20 @@ export const HomeMain: React.FC<{
         openConfirmationDialog();
     }, [editableMovie]);
 
+    const deleteMovieFromList = useCallback(() => {
+        dispatch(deleteMovieByID(editableMovie));
+    }, [editableMovie]);
+
     const dropdownActions = useMemo(() => ({
         handleEditMovie,
         handleDeleteMovie,
     }), []);
+
+    const dialogSettings = useMemo(() => ({
+        DialogContent: () => (<>Are you sure you want to delete {editableMovie.title}?</>),
+        dialogTitle: 'delete movie?',
+        onConfirm: deleteMovieFromList
+    }), [editableMovie]);
 
     return (
         <ErrorBoundary>
@@ -54,9 +62,9 @@ export const HomeMain: React.FC<{
                 <HomeMenu />
                 <Counter count={movies.data.length} />
                 <MoviesList>
-                    {movies.data.map((m, i) => (
+                    {movies.data.map((m) => (
                         <MovieCard
-                            key={i}
+                            key={m.id}
                             movie={m}
                             onClick={onMovieClick}
                             dropdownActions={dropdownActions}
@@ -64,7 +72,7 @@ export const HomeMain: React.FC<{
                     ))}
                 </MoviesList>
             </Main>
-            <EditMovieDialog movie={editableMovie} onClose={updateMoviesList}/>
+            <EditMovieDialog movie={editableMovie} />
             <DeleteMovieDialog {...dialogSettings}/>
         </ErrorBoundary>
     )

@@ -81,7 +81,7 @@ export const MovieCard: React.FC<{
             text: 'Delete',
             onClick: () => dropdownActions.handleDeleteMovie(movie)
         }]
-    ), []);
+    ), [movie]);
 
     const handleClick = useCallback(() => {
         onClick(movie);

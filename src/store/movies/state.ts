@@ -1,5 +1,7 @@
+import { MovieData } from '../../services';
+
 export interface HomeState {
-    data: [];
+    data: MovieData[];
     limit: number;
     offset: number;
     totalAmount: number;
