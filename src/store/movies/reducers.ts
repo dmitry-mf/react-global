@@ -9,7 +9,9 @@ interface Reducers {
     ['DELETE_MOVIE']: Reducer<HomeState, Action<string, MovieData>>;
     ['UPDATE_MOVIE_FIELDS']: Reducer<HomeState, Action<string, MovieData>>;
     ['FILTER_MOVIES_BY_GENRE']: Reducer<HomeState, Action<string, string[]>>;
+    ['FILTER_MOVIES_BY_RATING']: Reducer<HomeState, Action<string, string>>;
     ['SET_GENRE_FILTER']: Reducer<HomeState, Action<string, string[]>>;
+    ['SET_SORT_BY']: Reducer<HomeState, Action<string, string>>;
 }
 
 export const reducers: Reducers = {
@@ -61,11 +63,35 @@ export const reducers: Reducers = {
         return initialState;
     },
 
+    ['FILTER_MOVIES_BY_RATING']: (state, { payload }) => {
+        const movies = [...state.data];
+        movies.sort((a, b) => (a.vote_average - b.vote_average));
+        if (payload) {
+            return {
+                ...state,
+                data: movies,
+            }
+        }
+
+        return initialState;
+    },
+
     ['SET_GENRE_FILTER']: (state, { payload }) => {
         if (payload) {
             return {
                 ...state,
                 genreFilter: payload,
+            }
+        }
+
+        return initialState;
+    },
+
+    ['SET_SORT_BY']: (state, { payload }) => {
+        if (payload) {
+            return {
+                ...state,
+                sortBy: payload,
             }
         }
 

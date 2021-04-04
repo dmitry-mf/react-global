@@ -18,3 +18,9 @@ export const getTotalAmount = createSelector(
     _getTotalAmount,
     state => state,
 );
+
+const _getSortBy = (state: State) => state.home.sortBy;
+export const getSortBy = createSelector(
+    _getSortBy,
+    state => state,
+);

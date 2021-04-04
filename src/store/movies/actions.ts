@@ -33,12 +33,22 @@ export const updateMovie = (movie: MovieData) => async (dispatch: Dispatch) => {
     await HomeService.updateMovie(movie);
 }
 
-export const filterMovieByGenre = (payload: string[]) => ({
+export const filterMoviesByGenre = (payload: string[]) => ({
     type: 'FILTER_MOVIES_BY_GENRE',
+    payload,
+});
+
+export const filterMoviesByRating = (payload: string) => ({
+    type: 'FILTER_MOVIES_BY_RATING',
     payload,
 });
 
 export const setGenreFilter = (payload: string[]) => ({
     type: 'SET_GENRE_FILTER',
+    payload,
+});
+
+export const setSortBy = (payload: string) => ({
+    type: 'SET_SORT_BY',
     payload,
 });
