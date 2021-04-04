@@ -34,12 +34,12 @@ export const FormInput: React.FC<{
         'padding-v_10px',
     );
 
-    const handeChange = useCallback((e: React.SyntheticEvent<HTMLInputElement>) => {
+    const handleChange = useCallback((e: React.SyntheticEvent<HTMLInputElement>) => {
         onChange(name, e.currentTarget.value)
     }, [value])
 
     const inputProps = useMemo(() => ({
-        onChange: handeChange,
+        onChange: handleChange,
         value,
     }), [value]);
 
