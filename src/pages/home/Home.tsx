@@ -3,19 +3,22 @@ import { Footer, Logo } from '@components';
 import { HomeHeader, HomeMain, AddMovieModal, MovieDetailsHeader } from './components/';
 import { useModal } from '../../hooks';
 import { useSelector, useDispatch } from 'react-redux';
-import { getMovies } from '../../store/movies/selectors';
+import { getMovies, getGenreFilter } from '../../store/movies/selectors';
 import { fetchMovies } from '../../store/movies/actions';
 
 export const Home: React.FC<{}> = () => {
     const [movie, setMovie] = React.useState<any>();
-
     const dispatch: Dispatch<any> = useDispatch();
 
-    const updateMoviesList = useCallback(() => {
-        dispatch(fetchMovies());
-    }, []);
-
     const movies = useSelector(getMovies);
+    const genrefilter = useSelector(getGenreFilter);
+
+    const updateMoviesList = useCallback(() => {
+        dispatch(fetchMovies({
+            // prevent for filtering by all genre, genre doesn't exist
+            filter: !genrefilter.includes('all') && genrefilter,
+        }));
+    }, [genrefilter]);
 
     const [
         openModal,
@@ -26,7 +29,7 @@ export const Home: React.FC<{}> = () => {
 
     useEffect(() => {
         updateMoviesList();
-    }, []);
+    }, [genrefilter]);
 
     return (
         <>

@@ -1,14 +1,14 @@
 import { Dispatch } from 'redux';
 import { HomeService } from '../../services';
-import { MoviesData, MovieData } from '../../services/HomeService';
+import { MoviesData, MovieData, QueryParams } from '../../services/HomeService';
 
 export const setMovies = (payload: MoviesData) => ({
     type: 'SET_MOVIES',
     payload,
 });
-export const fetchMovies = () => async (dispatch: Dispatch) => {
+export const fetchMovies = (params: QueryParams) => async (dispatch: Dispatch) => {
     try {
-        const data = await HomeService.getMovies();
+        const data = await HomeService.getMovies(params);
         dispatch(setMovies(data));
     } catch (e) {
         throw e;
@@ -35,5 +35,10 @@ export const updateMovie = (movie: MovieData) => async (dispatch: Dispatch) => {
 
 export const filterMovieByGenre = (payload: string[]) => ({
     type: 'FILTER_MOVIES_BY_GENRE',
+    payload,
+});
+
+export const setGenreFilter = (payload: string[]) => ({
+    type: 'SET_GENRE_FILTER',
     payload,
 });

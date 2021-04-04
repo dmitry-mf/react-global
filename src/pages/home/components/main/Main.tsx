@@ -1,16 +1,17 @@
 import React, { useCallback, useMemo, useState, Dispatch } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Main, MovieCard, ErrorBoundary, ConfirmationDialog } from '@components';
 import { HomeMenu } from '../menu';
 import { Counter } from '../counter';
 import { MoviesList } from '../movies-list';
-import { MoviesData, MovieData } from '../../../../services/HomeService';
+import { MovieData } from '../../../../services/HomeService';
 import { EditMovieModal } from '../modals';
 import { useModal } from '../../../../hooks';
 import { deleteMovieByID } from '../../../../store/movies/actions';
+import { getTotalAmount } from '../../../../store/movies/selectors';
 
 export const HomeMain: React.FC<{
-    movies: MoviesData;
+    movies: MovieData[];
     onMovieClick: React.Dispatch<MovieData>;
     updateMoviesList: () => void;
 }> = ({
@@ -20,6 +21,8 @@ export const HomeMain: React.FC<{
     const dispatch: Dispatch<any> = useDispatch();
     
     const [ editableMovie, setEditableMovie ] = useState<MovieData>(null);
+
+    const totalAmount = useSelector(getTotalAmount);
 
     const [
         openModal,
@@ -60,9 +63,9 @@ export const HomeMain: React.FC<{
         <ErrorBoundary>
             <Main>
                 <HomeMenu />
-                <Counter count={movies.data.length} />
+                <Counter count={totalAmount} />
                 <MoviesList>
-                    {movies.data.map((m) => (
+                    {movies.map((m) => (
                         <MovieCard
                             key={m.id}
                             movie={m}

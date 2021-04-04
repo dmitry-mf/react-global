@@ -23,12 +23,12 @@ export interface MoviesData {
 }
 
 export interface QueryParams {
-    search: string;
-    sortBy: string;
-    sortOrder: string;
-    filter: string;
-    offset: string;
-    limit: string;
+    search?: string;
+    sortBy?: string;
+    sortOrder?: string;
+    filter?: string[];
+    offset?: string;
+    limit?: string;
 }
 
 @ServiceErrorsDecorator

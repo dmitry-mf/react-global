@@ -5,6 +5,10 @@ export interface HomeState {
     limit: number;
     offset: number;
     totalAmount: number;
+
+    globalSearch: string,
+    genreFilter: string[],
+    sortBy: string | null,
 }
 
 export interface State {
@@ -16,4 +20,8 @@ export const state: HomeState = {
     limit: 0,
     offset: 0,
     totalAmount: 0,
+
+    globalSearch: '',
+    genreFilter: ['all'],
+    sortBy: null,
 };

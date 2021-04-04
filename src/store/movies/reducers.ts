@@ -9,6 +9,7 @@ interface Reducers {
     ['DELETE_MOVIE']: Reducer<HomeState, Action<string, MovieData>>;
     ['UPDATE_MOVIE_FIELDS']: Reducer<HomeState, Action<string, MovieData>>;
     ['FILTER_MOVIES_BY_GENRE']: Reducer<HomeState, Action<string, string[]>>;
+    ['SET_GENRE_FILTER']: Reducer<HomeState, Action<string, string[]>>;
 }
 
 export const reducers: Reducers = {
@@ -58,7 +59,18 @@ export const reducers: Reducers = {
         }
 
         return initialState;
-    }
+    },
+
+    ['SET_GENRE_FILTER']: (state, { payload }) => {
+        if (payload) {
+            return {
+                ...state,
+                genreFilter: payload,
+            }
+        }
+
+        return initialState;
+    },
 }
 
 
