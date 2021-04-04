@@ -3,8 +3,8 @@ import cn from "classnames/bind";
 import styles from '@styles/components/ui-kit/actions-button/index.scss';
 const cx = cn.bind(styles);
 
-export const ActionsButton: React.FC<{classNames?: string}> = (
-    { classNames }
+export const ActionsButton: React.FC<{classNames?: string, onClick: (e: React.SyntheticEvent) => void}> = (
+    { classNames, onClick }
 ) => {
     const defaultClassNames = cx(
         'actions-button',
@@ -17,7 +17,7 @@ export const ActionsButton: React.FC<{classNames?: string}> = (
     );
 
     return (
-        <div className={classNames || defaultClassNames}>
+        <div onClick={onClick} className={classNames || defaultClassNames}>
             <i className={dotClassNames}/>
         </div>
     )
