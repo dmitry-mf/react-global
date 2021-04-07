@@ -1,17 +1,12 @@
-import React from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import cn from "classnames/bind";
 import styles from '@styles/components/index.scss';
 import { Label, ActionsButton } from '@components';
+import { MovieData } from '../../../services/HomeService';
+import { DropdownMenu } from "../dropdown-menu";
 const cx = cn.bind(styles);
 
-export interface Movie {
-    title: string;
-    year: number| string;
-    cover: string;
-    description: string;
-}
-
-const MovieCardInfo: React.FC<{movie: Movie}> = ({ movie }) => {
+const MovieCardInfo: React.FC<{movie: MovieData}> = ({ movie }) => {
     const movieCardInfoCn = cx(
         'movie-card__info'
     )
@@ -46,18 +41,22 @@ const MovieCardInfo: React.FC<{movie: Movie}> = ({ movie }) => {
             <div className={movieCardInfoCn}>
                 <span className={titleCn}>{movie.title}</span>
                 <Label classNames={labelCn}>
-                    <span className={yearCn}>{movie.year}</span>
+                    <span className={yearCn}>{movie.release_date}</span>
                 </Label>
             </div>
-            <div className={descriptionCn}>{movie.description}</div>
+            <div className={descriptionCn}>{movie.overview}</div>
         </>
     )
 }
 
 export const MovieCard: React.FC<{
-    movie: Movie,
-    onClick: (movie: Movie) => void;
-}> = ({ movie, onClick }) => {
+    movie: MovieData,
+    onClick: (movie: MovieData) => void;
+    dropdownActions: {
+        handleEditMovie: (movie: MovieData) => void,
+        handleDeleteMovie: (movie: MovieData) => void,
+    }
+}> = ({ movie, onClick, dropdownActions }) => {
     const movieCardCn = cx(
         'movie-card',
     );
@@ -66,15 +65,34 @@ export const MovieCard: React.FC<{
         'movie-card__image'
     )
 
-    const handleClick = React.useCallback(() => {
+    const [menuOpened, setMenuOpened ] = useState(false);
+
+    const handleShowMenu = useCallback((e: React.SyntheticEvent) => {
+        e.stopPropagation();
+        setMenuOpened(!menuOpened);
+    }, [menuOpened]);
+
+    const dropdownMenuItems = useMemo(() => (
+        [{
+            text: 'Edit',
+            onClick: () => dropdownActions.handleEditMovie(movie)
+        },
+        {
+            text: 'Delete',
+            onClick: () => dropdownActions.handleDeleteMovie(movie)
+        }]
+    ), [movie]);
+
+    const handleClick = useCallback(() => {
         onClick(movie);
-    }, [movie])
+    }, [movie]);
 
     return (
         <div className={movieCardCn} onClick={handleClick}>
-            <img className={movieCardImageCn} src={movie.cover}/>
+            <img className={movieCardImageCn} src={movie.poster_path}/>
             <MovieCardInfo movie={movie}/>
-            <ActionsButton />
+            <ActionsButton onClick={handleShowMenu}/>
+            {menuOpened && <DropdownMenu showMenu={handleShowMenu} items={dropdownMenuItems}/>}
         </div>
     )
 }

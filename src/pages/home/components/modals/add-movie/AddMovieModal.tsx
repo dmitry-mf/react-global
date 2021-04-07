@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import {
     Overlay,
     AddMovieForm,
+    AddMovieFields,
     Modal,
     ModalContent,
     ModalFooter,
     ModalHeader,
     Close,
 } from '@components';
+import { HomeService } from '../../../../../services';
+
+const emptyMovie = {
+    title: '',
+    date: '',
+    url: '',
+    genre: '',
+    overview: '',
+    runtime: '',
+}
 
 export const AddMovieModal: React.FC<{
     closeModal: () => void;
@@ -16,23 +27,57 @@ export const AddMovieModal: React.FC<{
     onClose?: () => void;
 }> = ({
     closeModal,
-    onConfirm,
-    onDecline,
     onClose,
 }) => {
+    const [ fields, setFields ] = useState<AddMovieFields>(emptyMovie);
+
+    const createMovie = useCallback(() => {
+        const [ dd, mm, yyyy ] = fields.date.split('.').map(v => Number(v));
+
+        return HomeService.createMovie({
+            genres: [fields.genre],
+            overview: fields.overview,
+            poster_path: fields.url,
+            release_date: new Date(yyyy, mm, dd).toISOString(),
+            runtime: Number(fields.runtime),
+            title: fields.title,
+        });
+    }, [fields]);
+
+    const handleSetFields = useCallback((name: string, value: string) => {
+        setFields(state => ({
+            ...state,
+            [name]: value,
+        }));
+    }, [fields]);
+
+    const handleResetFields = useCallback(() => {
+        setFields(({
+            title: '',
+            date: '',
+            url: '',
+            genre: '',
+            overview: '',
+            runtime: '',
+        }));
+    }, [fields]);
+
     const handleClose = React.useCallback(() => {
         onClose && onClose();
         closeModal();
     }, []);
 
-    const handleConfirm = React.useCallback(() => {
-        onConfirm && onConfirm();
-        closeModal();
-    }, []);
+    const handleConfirm = React.useCallback(async () => {
+        try {
+            await createMovie();
+            handleClose();
+        } catch (e) {
+            throw e;
+        }
+    }, [fields]);
 
     const handleDecline = React.useCallback(() => {
-        onDecline && onDecline();
-        closeModal();
+        handleResetFields();
     }, []);
 
     return (
@@ -40,7 +85,7 @@ export const AddMovieModal: React.FC<{
             <Modal>
                 <ModalHeader title={'add movie'} />
                 <ModalContent>
-                    <AddMovieForm />
+                    <AddMovieForm fields={fields} handleChange={handleSetFields}/>
                 </ModalContent>
                 <ModalFooter
                     onConfirm={handleConfirm}
@@ -48,7 +93,7 @@ export const AddMovieModal: React.FC<{
                     confirmContent={'submit'}
                     declineContent={'reset'}
                 />
-                <Close onClick={handleClose} />
+                <Close onClick={closeModal} />
             </Modal>
         </Overlay>
     )

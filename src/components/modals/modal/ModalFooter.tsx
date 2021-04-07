@@ -60,10 +60,10 @@ export const ModalFooter: React.FC<{
     return (
         <ModalFooterContainer>
             <Button onClick={onDecline} classNames={declineBtnCn}>
-                <span className={declineBtnContentCn}>{confirmContent}</span>
+                <span className={declineBtnContentCn}>{declineContent}</span>
             </Button>
             <Button onClick={onConfirm} classNames={confirmBtnCn}>
-                <span className={confirmBtnContentCn}>{declineContent}</span>
+                <span className={confirmBtnContentCn}>{confirmContent}</span>
             </Button>
         </ModalFooterContainer>
     )

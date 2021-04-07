@@ -10,7 +10,6 @@ type AbstractModalProps = any;
 export const useModal = (
     name: string,
     Modal: React.FC<AbstractModalProps>,
-    settings = {},
 ): any =>  {
     const state = useDialogContext(name);
     const dispatch = useDialogDispatch();
@@ -25,8 +24,8 @@ export const useModal = (
         dispatch({ name, isOpen: false });
     }, [state]);
 
-    const Dialog = () => state ? ReactDOM.createPortal(
-        <Modal {...settings} openModal={openModal} closeModal={closeModal}/>,
+    const Dialog = (props: any) => state ? ReactDOM.createPortal(
+        <Modal {...props} openModal={openModal} closeModal={closeModal}/>,
         Container) : null;
 
     return [

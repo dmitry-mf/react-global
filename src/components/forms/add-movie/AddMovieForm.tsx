@@ -1,18 +1,29 @@
 import React from "react";
-import cn from "classnames/bind";
-import styles from '@styles/components/index.scss';
 import { FormInput,  } from '@components';
-const cx = cn.bind(styles);
 
-export const AddMovieForm: React.FC<{}> = () => {
+export interface AddMovieFields {
+    title: string;
+    date: string;
+    url: string;
+    genre: string;
+    overview: string;
+    runtime: string;
+}
+
+export const AddMovieForm: React.FC<{
+    fields: AddMovieFields;
+    handleChange: (name: string, value: string) => void;
+}> = (
+    { fields, handleChange }
+) => {
     return (
         <>
-            <FormInput title={'Title'}/>
-            <FormInput title={'Release date'}/>
-            <FormInput title={'Movie url'}/>
-            <FormInput title={'Genre'}/>
-            <FormInput title={'Overview'}/>
-            <FormInput title={'Runtime'}/>
+            <FormInput name={'title'} title={'Title'} value={fields.title} onChange={handleChange}/>
+            <FormInput name={'date'} title={'Release date'} value={fields.date} onChange={handleChange}/>
+            <FormInput name={'url'} title={'Movie url'} value={fields.url} onChange={handleChange}/>
+            <FormInput name={'genre'} title={'Genre'} value={fields.genre} onChange={handleChange}/>
+            <FormInput name={'overview'} title={'Overview'} value={fields.overview} onChange={handleChange}/>
+            <FormInput name={'runtime'} title={'Runtime'} value={fields.runtime} onChange={handleChange}/>
         </>
     )
 }
