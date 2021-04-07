@@ -1,4 +1,5 @@
 import { ServiceErrorsDecorator } from '../helpers/ServiceErrorsDecorator';
+import { API, MOVIES } from './routes';
 
 export interface MovieData {
     budget?: number;
@@ -31,11 +32,27 @@ export interface QueryParams {
     limit?: string;
 }
 
+const BASE_HEADERS = {
+    'Content-Type': 'application/json;charset=utf-8'
+}
+
+enum BASE_METHODS {
+    PUT = 'PUT',
+    POST =  'POST',
+    DELETE = 'DELETE',
+    GET = 'GET',
+}
+
+const BASE_URL = [
+    API,
+    MOVIES,
+]
+
 @ServiceErrorsDecorator
 export class HomeService {
     public static getMovies = async (query?: QueryParams) => {
         const response: any = await fetch(
-            `http://localhost:4000/movies/?${Object.entries(query || {}).map(param => {
+            `${BASE_URL.join('/')}/?${Object.entries(query || {}).map(param => {
                 const [ key, value ] = param;
                 return `${key || ''}=${value || ''}`;
             }).join('&')}`);
@@ -44,11 +61,9 @@ export class HomeService {
     }
 
     public static createMovie = async (movie: MovieData) => {
-        const response: any = await fetch('http://localhost:4000/movies', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json;charset=utf-8'
-            },
+        const response: any = await fetch(`${BASE_URL.join('/')}`, {
+            method: BASE_METHODS.POST,
+            headers: BASE_HEADERS,
             // api requiers runtime as a number
             body: JSON.stringify(
                 movie,
@@ -60,11 +75,9 @@ export class HomeService {
     }
 
     public static updateMovie = async (movie: MovieData) => {
-        const response: any = await fetch('http://localhost:4000/movies', {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json;charset=utf-8'
-            },
+        const response: any = await fetch(`${BASE_URL.join('/')}`, {
+            method: BASE_METHODS.PUT,
+            headers: BASE_HEADERS,
             // api requiers runtime and id as a number
             body: JSON.stringify(
                 movie,
@@ -76,11 +89,9 @@ export class HomeService {
     }
 
     public static deleteMovie = async (movie: MovieData) => {
-        const response: any = await fetch(`http://localhost:4000/movies/${movie.id}`, {
-            method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json;charset=utf-8'
-            },
+        const response: any = await fetch(`${BASE_URL.join('/')}/${movie.id}`, {
+            method: BASE_METHODS.DELETE,
+            headers: BASE_HEADERS,
         });
 
        return response;

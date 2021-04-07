@@ -7,9 +7,9 @@ export function ServiceErrorsDecorator(OriginalClass: any) {
         method: OriginalClass[name]
      }));
  
-    methods.forEach(v => {
-       OriginalClass[v.name] = async (args: any) => {
-            const response: Response = await v.method(args);
+    methods.forEach(({ name, method }) => {
+       OriginalClass[name] = async (args: any) => {
+            const response: Response = await method(args);
 
             if (response.ok) {
                 return await response.json();

@@ -53,11 +53,11 @@ export const HomeMain: React.FC<{
         handleDeleteMovie,
     }), []);
 
-    const dialogSettings = useMemo(() => ({
+    const dialogSettings = {
         DialogContent: () => (<>Are you sure you want to delete {editableMovie.title}?</>),
         dialogTitle: 'delete movie?',
         onConfirm: deleteMovieFromList
-    }), [editableMovie]);
+    };
 
     return (
         <ErrorBoundary>
@@ -65,10 +65,10 @@ export const HomeMain: React.FC<{
                 <HomeMenu />
                 <Counter count={totalAmount} />
                 <MoviesList>
-                    {movies.map((m) => (
+                    {movies.map((movie) => (
                         <MovieCard
-                            key={m.id}
-                            movie={m}
+                            key={movie.id}
+                            movie={movie}
                             onClick={onMovieClick}
                             dropdownActions={dropdownActions}
                         />

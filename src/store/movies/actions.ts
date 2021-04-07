@@ -2,8 +2,18 @@ import { Dispatch } from 'redux';
 import { HomeService } from '../../services';
 import { MoviesData, MovieData, QueryParams } from '../../services/HomeService';
 
+export enum ACTIONS {
+    SET_MOVIES = 'SET_MOVIES',
+    DELETE_MOVIE = 'DELETE_MOVIE',
+    UPDATE_MOVIE_FIELDS = 'UPDATE_MOVIE_FIELDS',
+    FILTER_MOVIES_BY_GENRE = 'FILTER_MOVIES_BY_GENRE' ,
+    FILTER_MOVIES_BY_RATING = 'FILTER_MOVIES_BY_RATING',
+    SET_GENRE_FILTER = 'SET_GENRE_FILTER',
+    SET_SORT_BY = 'SET_SORT_BY',
+}
+
 export const setMovies = (payload: MoviesData) => ({
-    type: 'SET_MOVIES',
+    type: ACTIONS.SET_MOVIES,
     payload,
 });
 export const fetchMovies = (params: QueryParams) => async (dispatch: Dispatch) => {
@@ -16,7 +26,7 @@ export const fetchMovies = (params: QueryParams) => async (dispatch: Dispatch) =
 }
 
 export const deleteMovie = (payload: MovieData) => ({
-    type: 'DELETE_MOVIE',
+    type: ACTIONS.DELETE_MOVIE,
     payload,
 });
 export const deleteMovieByID = (movie: MovieData) => async (dispatch: Dispatch) => {
@@ -25,7 +35,7 @@ export const deleteMovieByID = (movie: MovieData) => async (dispatch: Dispatch) 
 }
 
 export const updateMovieFields = (payload: MovieData) => ({
-    type: 'UPDATE_MOVIE_FIELDS',
+    type: ACTIONS.UPDATE_MOVIE_FIELDS,
     payload,
 });
 export const updateMovie = (movie: MovieData) => async (dispatch: Dispatch) => {
@@ -34,21 +44,21 @@ export const updateMovie = (movie: MovieData) => async (dispatch: Dispatch) => {
 }
 
 export const filterMoviesByGenre = (payload: string[]) => ({
-    type: 'FILTER_MOVIES_BY_GENRE',
+    type: ACTIONS.FILTER_MOVIES_BY_GENRE,
     payload,
 });
 
 export const filterMoviesByRating = (payload: string) => ({
-    type: 'FILTER_MOVIES_BY_RATING',
+    type: ACTIONS.FILTER_MOVIES_BY_RATING,
     payload,
 });
 
 export const setGenreFilter = (payload: string[]) => ({
-    type: 'SET_GENRE_FILTER',
+    type: ACTIONS.SET_GENRE_FILTER,
     payload,
 });
 
 export const setSortBy = (payload: string) => ({
-    type: 'SET_SORT_BY',
+    type: ACTIONS.SET_SORT_BY,
     payload,
 });

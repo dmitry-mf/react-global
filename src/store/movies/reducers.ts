@@ -2,20 +2,21 @@ import { Reducer } from 'redux';
 import { state as initialState, HomeState } from './state';
 import { Action } from '../index.d';
 import { MovieData } from '../../services/HomeService';
+import { ACTIONS } from './actions';
 
 //describe types
 interface Reducers {
-    ['SET_MOVIES']: Reducer<HomeState, Action<string, MovieData>>;
-    ['DELETE_MOVIE']: Reducer<HomeState, Action<string, MovieData>>;
-    ['UPDATE_MOVIE_FIELDS']: Reducer<HomeState, Action<string, MovieData>>;
-    ['FILTER_MOVIES_BY_GENRE']: Reducer<HomeState, Action<string, string[]>>;
-    ['FILTER_MOVIES_BY_RATING']: Reducer<HomeState, Action<string, string>>;
-    ['SET_GENRE_FILTER']: Reducer<HomeState, Action<string, string[]>>;
-    ['SET_SORT_BY']: Reducer<HomeState, Action<string, string>>;
+    [ACTIONS.SET_MOVIES]: Reducer<HomeState, Action<string, MovieData>>;
+    [ACTIONS.DELETE_MOVIE]: Reducer<HomeState, Action<string, MovieData>>;
+    [ACTIONS.UPDATE_MOVIE_FIELDS]: Reducer<HomeState, Action<string, MovieData>>;
+    [ACTIONS.FILTER_MOVIES_BY_GENRE]: Reducer<HomeState, Action<string, string[]>>;
+    [ACTIONS.FILTER_MOVIES_BY_RATING]: Reducer<HomeState, Action<string, string>>;
+    [ACTIONS.SET_GENRE_FILTER]: Reducer<HomeState, Action<string, string[]>>;
+    [ACTIONS.SET_SORT_BY]: Reducer<HomeState, Action<string, string>>;
 }
 
 export const reducers: Reducers = {
-    ['SET_MOVIES']: (state, { payload }) => {
+    [ACTIONS.SET_MOVIES]: (state, { payload }) => {
         if (payload) {
             return {
                 ...state,
@@ -26,7 +27,7 @@ export const reducers: Reducers = {
         return initialState;
     },
 
-    ['DELETE_MOVIE']: (state, { payload }) => {
+    [ACTIONS.DELETE_MOVIE]: (state, { payload }) => {
         if (payload) {
             return {
                 ...state,
@@ -37,7 +38,7 @@ export const reducers: Reducers = {
         return initialState;
     },
 
-    ['UPDATE_MOVIE_FIELDS']: (state, { payload }) => {
+    [ACTIONS.UPDATE_MOVIE_FIELDS]: (state, { payload }) => {
         if (payload) {
             return {
                 ...state,
@@ -48,7 +49,7 @@ export const reducers: Reducers = {
         return initialState;
     },
 
-    ['FILTER_MOVIES_BY_GENRE']: (state, { payload }) => {
+    [ACTIONS.FILTER_MOVIES_BY_GENRE]: (state, { payload }) => {
         if (payload) {
             return {
                 ...state,
@@ -63,7 +64,7 @@ export const reducers: Reducers = {
         return initialState;
     },
 
-    ['FILTER_MOVIES_BY_RATING']: (state, { payload }) => {
+    [ACTIONS.FILTER_MOVIES_BY_RATING]: (state, { payload }) => {
         const movies = [...state.data];
         movies.sort((a, b) => (a.vote_average - b.vote_average));
         if (payload) {
@@ -76,7 +77,7 @@ export const reducers: Reducers = {
         return initialState;
     },
 
-    ['SET_GENRE_FILTER']: (state, { payload }) => {
+    [ACTIONS.SET_GENRE_FILTER]: (state, { payload }) => {
         if (payload) {
             return {
                 ...state,
@@ -87,7 +88,7 @@ export const reducers: Reducers = {
         return initialState;
     },
 
-    ['SET_SORT_BY']: (state, { payload }) => {
+    [ACTIONS.SET_SORT_BY]: (state, { payload }) => {
         if (payload) {
             return {
                 ...state,

@@ -11,6 +11,15 @@ import {
 } from '@components';
 import { HomeService } from '../../../../../services';
 
+const emptyMovie = {
+    title: '',
+    date: '',
+    url: '',
+    genre: '',
+    overview: '',
+    runtime: '',
+}
+
 export const AddMovieModal: React.FC<{
     closeModal: () => void;
     onConfirm?: () => void;
@@ -20,14 +29,7 @@ export const AddMovieModal: React.FC<{
     closeModal,
     onClose,
 }) => {
-    const [ fields, setFields ] = useState<AddMovieFields>({
-        title: '',
-        date: '',
-        url: '',
-        genre: '',
-        overview: '',
-        runtime: '',
-    });
+    const [ fields, setFields ] = useState<AddMovieFields>(emptyMovie);
 
     const createMovie = useCallback(() => {
         const [ dd, mm, yyyy ] = fields.date.split('.').map(v => Number(v));
