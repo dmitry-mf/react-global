@@ -10,7 +10,6 @@ export const FormInput: React.FC<{
     field: FieldInputProps<any>;
     meta: FieldMetaProps<any>;
 }> = ({ title, meta, field }) => {
-    console.log(meta);
     const formInputCn = cx(
         'form-input',
         'form-input_dark',
