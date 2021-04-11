@@ -1,4 +1,5 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
+import { Formik, Form } from 'formik';
 import {
     Overlay,
     AddMovieForm,
@@ -8,6 +9,7 @@ import {
     ModalFooter,
     ModalHeader,
     Close,
+    movieSchema,
 } from '@components';
 import { HomeService } from '../../../../../services';
 
@@ -29,71 +31,54 @@ export const AddMovieModal: React.FC<{
     closeModal,
     onClose,
 }) => {
-    const [ fields, setFields ] = useState<AddMovieFields>(emptyMovie);
-
-    const createMovie = useCallback(() => {
-        const [ dd, mm, yyyy ] = fields.date.split('.').map(v => Number(v));
+    const createMovie = useCallback((values: AddMovieFields) => {
+        const [ dd, mm, yyyy ] = values.date.split('.').map(v => Number(v));
 
         return HomeService.createMovie({
-            genres: [fields.genre],
-            overview: fields.overview,
-            poster_path: fields.url,
+            genres: [values.genre],
+            overview: values.overview,
+            poster_path: values.url,
             release_date: new Date(yyyy, mm, dd).toISOString(),
-            runtime: Number(fields.runtime),
-            title: fields.title,
+            runtime: Number(values.runtime),
+            title: values.title,
         });
-    }, [fields]);
-
-    const handleSetFields = useCallback((name: string, value: string) => {
-        setFields(state => ({
-            ...state,
-            [name]: value,
-        }));
-    }, [fields]);
-
-    const handleResetFields = useCallback(() => {
-        setFields(({
-            title: '',
-            date: '',
-            url: '',
-            genre: '',
-            overview: '',
-            runtime: '',
-        }));
-    }, [fields]);
+    }, []);
 
     const handleClose = React.useCallback(() => {
         onClose && onClose();
         closeModal();
     }, []);
 
-    const handleConfirm = React.useCallback(async () => {
+    const handleConfirm = React.useCallback(async (values: AddMovieFields) => {
         try {
-            await createMovie();
+            await createMovie(values);
             handleClose();
         } catch (e) {
             throw e;
         }
-    }, [fields]);
-
-    const handleDecline = React.useCallback(() => {
-        handleResetFields();
     }, []);
 
     return (
         <Overlay>
             <Modal>
-                <ModalHeader title={'add movie'} />
-                <ModalContent>
-                    <AddMovieForm fields={fields} handleChange={handleSetFields}/>
-                </ModalContent>
-                <ModalFooter
-                    onConfirm={handleConfirm}
-                    onDecline={handleDecline}
-                    confirmContent={'submit'}
-                    declineContent={'reset'}
-                />
-                <Close onClick={closeModal} />
+                <Formik validationSchema={movieSchema} initialValues={emptyMovie} onSubmit={handleConfirm}>
+                    {
+                        ({ resetForm }) => (
+                            <Form>
+                                <ModalHeader title={'add movie'} />
+                                <ModalContent>
+                                    <AddMovieForm />
+                                </ModalContent>
+                                <ModalFooter
+                                    onDecline={resetForm}
+                                    confirmContent={'submit'}
+                                    declineContent={'reset'}
+                                />
+                                <Close onClick={closeModal} />
+                            </Form>
+                        )
+                    }
+                </Formik>
             </Modal>
         </Overlay>
     )

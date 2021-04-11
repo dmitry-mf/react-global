@@ -1,16 +1,16 @@
-import React, { useCallback, useMemo } from "react";
+import React from "react";
+import { FieldInputProps, FieldMetaProps } from 'formik';
 import cn from "classnames/bind";
 import styles from '@styles/components/index.scss';
 import { Input } from '@components';
 const cx = cn.bind(styles);
 
 export const FormInput: React.FC<{
-    name: string;
     title: string;
-    value: string;
-    onChange: (name: string, value: string) => void;
-}> = ({ name, title, value, onChange }) => {
-
+    field: FieldInputProps<any>;
+    meta: FieldMetaProps<any>;
+}> = ({ title, meta, field }) => {
+    console.log(meta);
     const formInputCn = cx(
         'form-input',
         'form-input_dark',
@@ -34,21 +34,24 @@ export const FormInput: React.FC<{
         'padding-v_10px',
     );
 
-    const handleChange = useCallback((e: React.SyntheticEvent<HTMLInputElement>) => {
-        onChange(name, e.currentTarget.value)
-    }, [value])
-
-    const inputProps = useMemo(() => ({
-        onChange: handleChange,
-        value,
-    }), [value]);
+    const validationErrorCn = cx(
+        'form-validation-error',
+        'padding-v_10px',
+        'text_red',
+        'text_md'
+    )
 
     return (
         <div className={formCn}>
             <label className={formLabelCn}>
                 <span className={formTitle}>{title}</span>
-                <Input classNames={formInputCn} props={inputProps} />
+                {meta.touched && meta.error && (
+                   <div className={validationErrorCn}>{meta.error}</div>
+                )}
+                <Input classNames={formInputCn} props={field} />
             </label>
         </div>
     )
 }
+
+

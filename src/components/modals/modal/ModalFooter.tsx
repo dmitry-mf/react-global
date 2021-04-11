@@ -26,8 +26,8 @@ export const ModalFooterContainer: React.FC<{
 export const ModalFooter: React.FC<{
     confirmContent: string,
     declineContent: string,
-    onConfirm: () => void,
-    onDecline: () => void,
+    onConfirm?: () => void,
+    onDecline?: () => void,
 }> = (
     {confirmContent, onConfirm, declineContent, onDecline }
 ) => {
@@ -59,10 +59,10 @@ export const ModalFooter: React.FC<{
     
     return (
         <ModalFooterContainer>
-            <Button onClick={onDecline} classNames={declineBtnCn}>
+            <Button type={'reset'} onClick={onDecline} classNames={declineBtnCn}>
                 <span className={declineBtnContentCn}>{declineContent}</span>
             </Button>
-            <Button onClick={onConfirm} classNames={confirmBtnCn}>
+            <Button type={'submit'} onClick={onConfirm} classNames={confirmBtnCn}>
                 <span className={confirmBtnContentCn}>{confirmContent}</span>
             </Button>
         </ModalFooterContainer>

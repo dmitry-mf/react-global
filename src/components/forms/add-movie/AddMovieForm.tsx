@@ -1,4 +1,5 @@
 import React from "react";
+import { FastField, FieldProps } from 'formik';
 import { FormInput,  } from '@components';
 
 export interface AddMovieFields {
@@ -10,20 +11,27 @@ export interface AddMovieFields {
     runtime: string;
 }
 
-export const AddMovieForm: React.FC<{
-    fields: AddMovieFields;
-    handleChange: (name: string, value: string) => void;
-}> = (
-    { fields, handleChange }
-) => {
+export const AddMovieForm: React.FC<{}> = () => {
     return (
         <>
-            <FormInput name={'title'} title={'Title'} value={fields.title} onChange={handleChange}/>
-            <FormInput name={'date'} title={'Release date'} value={fields.date} onChange={handleChange}/>
-            <FormInput name={'url'} title={'Movie url'} value={fields.url} onChange={handleChange}/>
-            <FormInput name={'genre'} title={'Genre'} value={fields.genre} onChange={handleChange}/>
-            <FormInput name={'overview'} title={'Overview'} value={fields.overview} onChange={handleChange}/>
-            <FormInput name={'runtime'} title={'Runtime'} value={fields.runtime} onChange={handleChange}/>
+            <FastField name={'title'} >
+                {({ field, meta }: FieldProps) => <FormInput title={'Title'} field={field} meta={meta} />}
+            </FastField>
+            <FastField name={'date'} >
+                {({ field, meta }: FieldProps) => <FormInput title={'Release date'} field={field} meta={meta} />}
+            </FastField>
+            <FastField name={'url'} >
+                {({ field, meta }: FieldProps) => <FormInput title={'Movie url'} field={field} meta={meta} />}
+            </FastField>
+            <FastField name={'genre'} >
+                {({ field, meta }: FieldProps) => <FormInput title={'Genre'} field={field} meta={meta} />}
+            </FastField>
+            <FastField name={'overview'} >
+                {({ field, meta }: FieldProps) => <FormInput title={'Overview'} field={field} meta={meta} />}
+            </FastField>
+            <FastField name={'runtime'} >
+                {({ field, meta }: FieldProps) => <FormInput title={'Runtime'} field={field} meta={meta} />}
+            </FastField>
         </>
     )
 }

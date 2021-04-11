@@ -2,7 +2,7 @@ import { Reducer } from 'redux';
 import { state as initialState, HomeState } from './state';
 import { Action } from '../index.d';
 import { MovieData } from '../../services/HomeService';
-import { ACTIONS } from './actions';
+import { ACTIONS } from './actions'; 
 
 //describe types
 interface Reducers {
@@ -99,5 +99,4 @@ export const reducers: Reducers = {
         return initialState;
     },
 }
-
 
