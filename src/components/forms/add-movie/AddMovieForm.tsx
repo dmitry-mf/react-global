@@ -1,6 +1,7 @@
 import React from "react";
 import { FastField, FieldProps } from 'formik';
 import { FormInput,  } from '@components';
+import { MOVIE_FORM_FIELDS } from '../fields';
 
 export interface AddMovieFields {
     title: string;
@@ -14,24 +15,11 @@ export interface AddMovieFields {
 export const AddMovieForm: React.FC<{}> = () => {
     return (
         <>
-            <FastField name={'title'} >
-                {({ field, meta }: FieldProps) => <FormInput title={'Title'} field={field} meta={meta} />}
-            </FastField>
-            <FastField name={'date'} >
-                {({ field, meta }: FieldProps) => <FormInput title={'Release date'} field={field} meta={meta} />}
-            </FastField>
-            <FastField name={'url'} >
-                {({ field, meta }: FieldProps) => <FormInput title={'Movie url'} field={field} meta={meta} />}
-            </FastField>
-            <FastField name={'genre'} >
-                {({ field, meta }: FieldProps) => <FormInput title={'Genre'} field={field} meta={meta} />}
-            </FastField>
-            <FastField name={'overview'} >
-                {({ field, meta }: FieldProps) => <FormInput title={'Overview'} field={field} meta={meta} />}
-            </FastField>
-            <FastField name={'runtime'} >
-                {({ field, meta }: FieldProps) => <FormInput title={'Runtime'} field={field} meta={meta} />}
-            </FastField>
+            {MOVIE_FORM_FIELDS.map(formField => (
+                <FastField name={formField.name} >
+                    {({ field, meta }: FieldProps) => <FormInput title={formField.title} field={field} meta={meta} />}
+                </FastField>
+            ))}
         </>
     )
 }
