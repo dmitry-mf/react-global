@@ -1,8 +1,9 @@
 import React from "react";
+import { FastField, FieldProps } from 'formik';
 import cn from "classnames/bind";
 import styles from '@styles/components/index.scss';
 import { FormInput  } from '@components';
-import { movies } from "store/reducers";
+import { MOVIE_FORM_FIELDS } from '../fields';
 const cx = cn.bind(styles);
 
 export interface EditMovieFields {
@@ -29,17 +30,15 @@ const MovieID: React.FC<{id: string}> = ({ id }) => {
 
 export const EditMovieForm: React.FC<{
     fields: EditMovieFields;
-    handleChange: (name: string, value: string) => void;
-}> = ({ fields, handleChange }) => {
+}> = ({ fields }) => {
     return (
         <>
             <MovieID id={fields.id} />
-            <FormInput name={'title'} title={'Title'} value={fields.title} onChange={handleChange}/>
-            <FormInput name={'date'} title={'Release date'} value={fields.date} onChange={handleChange}/>
-            <FormInput name={'url'} title={'Movie url'} value={fields.url} onChange={handleChange}/>
-            <FormInput name={'genre'} title={'Genre'} value={fields.genre} onChange={handleChange}/>
-            <FormInput name={'overview'} title={'Overview'} value={fields.overview} onChange={handleChange}/>
-            <FormInput name={'runtime'} title={'Runtime'} value={fields.runtime} onChange={handleChange}/>
+            {MOVIE_FORM_FIELDS.map(formField => (
+                <FastField name={formField.name} >
+                    {({ field, meta }: FieldProps) => <FormInput title={formField.title} field={field} meta={meta} />}
+                </FastField>
+            ))}
         </>
     )
 }

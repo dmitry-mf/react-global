@@ -1,5 +1,6 @@
-import React, { useState, useCallback, Dispatch } from "react";
+import React, { useMemo, useCallback, Dispatch } from "react";
 import { useDispatch } from 'react-redux';
+import { Formik, Form } from 'formik';
 import {
     Overlay,
     EditMovieForm,
@@ -9,6 +10,7 @@ import {
     ModalFooter,
     ModalHeader,
     Close,
+    movieSchema,
 } from '@components';
 import { MovieData } from '../../../../../services/HomeService';
 import { updateMovie as updateStoreMovie } from '../../../../../store/movies/actions';
@@ -26,7 +28,7 @@ export const EditMovieModal: React.FC<{
 }) => {
     const dispatch: Dispatch<any> = useDispatch();
 
-    const [ fields, setFields ] = useState<EditMovieFields>({
+    const fields: EditMovieFields = useMemo(() => ({
         id: String(movie.id),
         title: movie.title,
         date: movie.release_date,
@@ -34,73 +36,57 @@ export const EditMovieModal: React.FC<{
         genre: movie.genres[0],
         overview: movie.overview,
         runtime: String(movie.runtime),
-    });
+    }), []);
 
-    const updateMovie = useCallback(() => {
-        const [ yyyy, mm, dd ] = fields.date.split('-').map(v => Number(v));
+    const updateMovie = useCallback((values: EditMovieFields) => {
+        const [ yyyy, mm, dd ] = values.date.split('-').map(v => Number(v));
 
         dispatch(updateStoreMovie({
-            id: Number(fields.id),
-            genres: [fields.genre],
-            overview: fields.overview,
-            poster_path: fields.url,
+            id: Number(values.id),
+            genres: [values.genre],
+            overview: values.overview,
+            poster_path: values.url,
             release_date: new Date(yyyy, mm, dd).toISOString(),
-            runtime: Number(fields.runtime),
-            title: fields.title,
+            runtime: Number(values.runtime),
+            title: values.title,
         }));
-    }, [fields]);
-
-    const handleResetFields = useCallback(() => {
-        setFields(({
-            title: movie.title,
-            date: movie.release_date,
-            url: movie.poster_path,
-            // add select to correct mapping
-            genre: movie.genres[0],
-            overview: movie.overview,
-            runtime: String(movie.runtime),
-        }));
-    }, [movie]);
-
-    const handleSetFields = useCallback((name: string, value: string) => {
-        setFields(state => ({
-            ...state,
-            [name]: value,
-        }));
-    }, [fields]);
+    }, []);
 
     const handleClose = React.useCallback(() => {
         onClose && onClose();
         closeModal();
     }, []);
 
-    const handleConfirm = React.useCallback(async () => {
+    const handleConfirm = React.useCallback(async (values: EditMovieFields) => {
         try {
-            updateMovie();
+            updateMovie(values);
             closeModal();
         } catch (e) {
             throw e;
         }
-    }, [fields]);
-
-    const handleDecline = React.useCallback(() => {
-        handleResetFields();
     }, []);
 
     return (
         <Overlay>
             <Modal>
-                <ModalHeader title={'edit movie'} />
-                    <ModalContent>
-                    <EditMovieForm fields={fields} handleChange={handleSetFields}/>
-                </ModalContent>
-                <ModalFooter
-                    onConfirm={handleConfirm}
-                    onDecline={handleDecline}
-                    confirmContent={'save'}
-                    declineContent={'reset'}
-                />
-                <Close onClick={handleClose} />
+                <Formik validationSchema={movieSchema} initialValues={fields} onSubmit={handleConfirm}>
+                    {
+                        ({ resetForm }) => (
+                            <Form>
+                                <ModalHeader title={'edit movie'} />
+                                    <ModalContent>
+                                <EditMovieForm fields={fields} />
+                                </ModalContent>
+                                <ModalFooter
+                                    onDecline={resetForm}
+                                    confirmContent={'save'}
+                                    declineContent={'reset'}
+                                />
+                                <Close onClick={handleClose} />
+                            </Form>
+                        )
+                    }
+                </Formik>
             </Modal>
         </Overlay>
     )

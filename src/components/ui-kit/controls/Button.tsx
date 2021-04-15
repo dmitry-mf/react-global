@@ -4,10 +4,11 @@ import styles from '@styles/components/ui-kit/buttons/index.scss';
 const cx = cn.bind(styles);
 
 export const Button: React.FC<{
+    type?: 'button' | 'submit' | 'reset';
     classNames?: string,
     onClick?: () => void,
 }> = (
-    { classNames, onClick, children }
+    { type, classNames, onClick, children }
 ) => {
     const defaultClassNames = cx(
         'button',
@@ -15,7 +16,7 @@ export const Button: React.FC<{
         'button_md',
     );
     return (
-        <button onClick={onClick} className={classNames || defaultClassNames}>
+        <button type={type} onClick={onClick} className={classNames || defaultClassNames}>
             {children}
         </button>
     )
