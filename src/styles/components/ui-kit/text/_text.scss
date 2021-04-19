@@ -51,4 +51,11 @@
     &_red {
         color: $carnation;
     }
+
+    &_404 {
+        font-size: 15rem;
+        font-weight: bolder;
+        letter-spacing: 1.1rem;
+        text-shadow: -15px 1px 1px $carnation, 15px 1px 1px #add8e6;
+    }
 }

@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState, Dispatch } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Main, MovieCard, ErrorBoundary, ConfirmationDialog } from '@components';
+import { Main, MovieCard, ErrorBoundary, ConfirmationDialog, Headline } from '@components';
 import { HomeMenu } from '../menu';
 import { Counter } from '../counter';
 import { MoviesList } from '../movies-list';
@@ -74,6 +74,9 @@ export const HomeMain: React.FC<{
                         />
                     ))}
                 </MoviesList>
+                <Headline center normal white>
+                    No movie found
+                </Headline>
             </Main>
             <EditMovieDialog movie={editableMovie} />
             <DeleteMovieDialog {...dialogSettings}/>

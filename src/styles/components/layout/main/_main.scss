@@ -2,7 +2,12 @@
 
 .main {
     padding: 2%;
+
     &_dark {
         background-color: $mineShaft;
+    }
+
+    &_100vh {
+        height: 100vh;
     }
 }
