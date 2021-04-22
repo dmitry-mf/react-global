@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Main, Headline, Button } from '@components';
 import cn from "classnames/bind";
 import styles from '@styles/components/index.scss';
@@ -46,9 +47,11 @@ export const NotFoundMain: React.FC<{}> = () => {
                 <span>404</span>
             </div>
             <div className={btnWrapperCn}>
-                <Button classNames={btnCn}>
-                    <span className={btnContentCn}>{'GO BACK TO HOME'}</span>
-                </Button>
+                <Link to="/">
+                    <Button classNames={btnCn}>
+                        <span className={btnContentCn}>{'GO BACK TO HOME'}</span>
+                    </Button>
+                </Link>
             </div>
         </Main>
     )
