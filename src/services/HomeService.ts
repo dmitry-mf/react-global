@@ -96,5 +96,10 @@ export class HomeService {
 
        return response;
     }
+
+    public static getMovie = async (id: number | string) => {
+        const response: any = await fetch(`${BASE_URL.join('/')}/${id}`);
+        return response;
+    }
 }
 

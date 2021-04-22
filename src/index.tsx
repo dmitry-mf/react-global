@@ -1,4 +1,9 @@
 import React, { StrictMode } from "react";
+import {
+	BrowserRouter as Router,
+	Route,
+	Switch,
+  } from "react-router-dom";
 import { Provider } from 'react-redux';
 import ReactDOM from "react-dom";
 import './styles/index.scss';
@@ -13,7 +18,13 @@ ReactDOM.render(
 	<StrictMode>
 		<Provider store={store}>
 			<DialogContainer>
-				<Home />
+				<Router>
+					<Switch>
+						<Route path="/:id" component={Home} />
+						<Route exact path="/" component={Home} />
+						<Route path="*" component={NotFound} />
+					</Switch>
+				</Router>
 			</DialogContainer>
 		</Provider>
 	</StrictMode>,

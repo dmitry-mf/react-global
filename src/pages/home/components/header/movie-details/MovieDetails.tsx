@@ -2,20 +2,12 @@ import React from "react";
 import { Rating } from '@components';
 import cn from "classnames/bind";
 import styles from '@styles/components/index.scss';
+import { MovieData } from "services";
+import { movies } from "store/reducers";
 const cx = cn.bind(styles);
 
-export interface MovieDetailsData {
-    cover: string;
-    title: string;
-    description: string;
-    year: string;
-    duration: string;
-    details: string;
-    rating: string;
-}
-
 export const MovieDetails: React.FC<{
-    movieDetails: MovieDetailsData
+    movieDetails: MovieData
 }> = ({ movieDetails }) => {
 
     const movieCardCn = cx(
@@ -35,20 +27,22 @@ export const MovieDetails: React.FC<{
     return (
         <>
             <div className={movieCardCn}>
-                <img src={movieDetails.cover}/>
+                <img src={movieDetails.poster_path}/>
             </div>
             <div className={movieDetailCn}>
                 <div className={titleWrapperCn}>
                     <h2 className={titleCn}>{movieDetails.title}</h2>
-                    <Rating rating={movieDetails.rating}/>
+                    <Rating rating={String(movieDetails.vote_average)}/>
                 </div>
-                <div className={descriptionCn}>{movieDetails.description}</div>
+                <div className={descriptionCn}>{
+                    movieDetails.genres.join(' & ')
+                }</div>
                 <div className={infoWrapperCn}>
-                    <div className={infoCn}>{movieDetails.year}</div>
-                    <div className={infoCn}>{movieDetails.duration}</div>
+                    <div className={infoCn}>{movieDetails.release_date}</div>
+                    <div className={infoCn}>{`${movieDetails.runtime} min`}</div>
                 </div>
                 <p className={descriptionCn}>
-                    {movieDetails.details}
+                    {movieDetails.overview}
                 </p>
             </div>
         </>

@@ -4,8 +4,10 @@ import styles from '@styles/components/index.scss';
 import { Button } from '@components';
 const cx = cn.bind(styles);
 
-export const SearchBtn: React.FC<{}> = (
-    {}
+export const SearchBtn: React.FC<{
+    onClick: ()=> void;
+}> = (
+    { onClick }
 ) => {
     const btnCn = cx(
         'button',
@@ -21,7 +23,7 @@ export const SearchBtn: React.FC<{}> = (
     );
 
     return (
-        <Button classNames={btnCn}>
+        <Button onClick={onClick} classNames={btnCn}>
             <span className={btnContentCn}>search</span>
         </Button>
     )

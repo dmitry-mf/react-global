@@ -10,6 +10,12 @@ import { useModal } from '../../../../hooks';
 import { deleteMovieByID } from '../../../../store/movies/actions';
 import { getTotalAmount } from '../../../../store/movies/selectors';
 
+const NoMovie = () => (
+    <Headline center normal white>
+        No movie found
+    </Headline>
+)
+
 export const HomeMain: React.FC<{
     movies: MovieData[];
     onMovieClick: React.Dispatch<MovieData>;
@@ -64,7 +70,7 @@ export const HomeMain: React.FC<{
             <Main>
                 <HomeMenu />
                 <Counter count={totalAmount} />
-                <MoviesList>
+               {movies.length ? <MoviesList>
                     {movies.map((movie) => (
                         <MovieCard
                             key={movie.id}
@@ -73,10 +79,7 @@ export const HomeMain: React.FC<{
                             dropdownActions={dropdownActions}
                         />
                     ))}
-                </MoviesList>
-                <Headline center normal white>
-                    No movie found
-                </Headline>
+                </MoviesList> : <NoMovie />}
             </Main>
             <EditMovieDialog movie={editableMovie} />
             <DeleteMovieDialog {...dialogSettings}/>
