@@ -13,7 +13,7 @@ export const Close: React.FC<{
     );
 
     return (
-        <div onClick={onClick} className={defaultClassNames} >
+        <div data-testid={'close'} onClick={onClick} className={defaultClassNames} >
             X
         </div>
     )
