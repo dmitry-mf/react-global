@@ -22,6 +22,36 @@ const emptyMovie = {
     runtime: '',
 }
 
+export const DialogForm: React.FC<{
+    handleConfirm: (values: AddMovieFields) => void;
+    closeModal: () => void;
+}> = ({
+    handleConfirm,
+    closeModal,
+}) => {
+
+    return (
+        <Formik validationSchema={movieSchema} initialValues={emptyMovie} onSubmit={handleConfirm}>
+        {
+            ({ resetForm }) => (
+                <Form data-testid={'add-movie-form'}>
+                    <ModalHeader title={'add movie'} />
+                    <ModalContent>
+                        <AddMovieForm />
+                    </ModalContent>
+                    <ModalFooter
+                        onDecline={resetForm}
+                        confirmContent={'submit'}
+                        declineContent={'reset'}
+                    />
+                    <Close onClick={closeModal} />
+                </Form>
+            )
+        }
+    </Formik>
+    )
+}
+
 export const AddMovieModal: React.FC<{
     closeModal: () => void;
     onConfirm?: () => void;
@@ -61,24 +91,7 @@ export const AddMovieModal: React.FC<{
     return (
         <Overlay>
             <Modal>
-                <Formik validationSchema={movieSchema} initialValues={emptyMovie} onSubmit={handleConfirm}>
-                    {
-                        ({ resetForm }) => (
-                            <Form>
-                                <ModalHeader title={'add movie'} />
-                                <ModalContent>
-                                    <AddMovieForm />
-                                </ModalContent>
-                                <ModalFooter
-                                    onDecline={resetForm}
-                                    confirmContent={'submit'}
-                                    declineContent={'reset'}
-                                />
-                                <Close onClick={closeModal} />
-                            </Form>
-                        )
-                    }
-                </Formik>
+                <DialogForm handleConfirm={handleConfirm} closeModal={closeModal}/>
             </Modal>
         </Overlay>
     )

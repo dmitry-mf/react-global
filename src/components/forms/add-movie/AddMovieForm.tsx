@@ -16,8 +16,8 @@ export const AddMovieForm: React.FC<{}> = () => {
     return (
         <>
             {MOVIE_FORM_FIELDS.map(formField => (
-                <FastField name={formField.name} >
-                    {({ field, meta }: FieldProps) => <FormInput title={formField.title} field={field} meta={meta} />}
+                <FastField name={formField.name} key={formField.title}>
+                    {({ field, meta }: FieldProps) => <FormInput key={formField.title} title={formField.title} field={field} meta={meta} />}
                 </FastField>
             ))}
         </>
