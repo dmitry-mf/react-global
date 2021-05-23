@@ -1,5 +1,5 @@
 import React from "react";
-import { Footer, Logo } from '@components';
+import { Footer, Logo } from '../../components';
 import { NotFoundHeader, NotFoundMain } from './components/';
 
 export const NotFound: React.FC<{}> = () => {

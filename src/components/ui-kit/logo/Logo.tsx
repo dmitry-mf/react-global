@@ -1,6 +1,6 @@
 import React from "react";
 import cn from "classnames/bind";
-import styles from '@styles/components/ui-kit/logo/index.scss';
+import styles from '../../../styles/components/ui-kit/logo/index.module.scss';
 const cx = cn.bind(styles);
 
 export const Logo: React.FC<{center?: boolean}> = ({center}) => {

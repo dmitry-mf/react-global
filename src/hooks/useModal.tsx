@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 
 import { useDialogDispatch, useDialogContext } from '../context';
 
-const Container = document.getElementById("dialog-root");
+const Container: any = null;//window.document.getElementById("dialog-root");
 
 type AbstractModalProps = any;
 
@@ -15,12 +15,12 @@ export const useModal = (
     const dispatch = useDialogDispatch();
 
     const openModal = React.useCallback(() => {
-        window.document.body.style.overflow = 'hidden';
+        //window.document.body.style.overflow = 'hidden';
         dispatch({ name, isOpen: true });
     }, [state]);
 
     const closeModal = React.useCallback(() => {
-        window.document.body.style.overflow = 'auto';
+        //window.document.body.style.overflow = 'auto';
         dispatch({ name, isOpen: false });
     }, [state]);
 

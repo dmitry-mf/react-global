@@ -1,6 +1,6 @@
 import React from "react";
 import cn from "classnames/bind";
-import styles from '@styles/components/ui-kit/actions-button/index.scss';
+import styles from '../../../styles/components/ui-kit/actions-button/index.module.scss';
 const cx = cn.bind(styles);
 
 export const ActionsButton: React.FC<{classNames?: string, onClick: (e: React.SyntheticEvent) => void}> = (
