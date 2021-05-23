@@ -1,7 +1,7 @@
 import React from "react";
-import { Header, Logo, HeaderRow, HeaderContent } from '@components';
+import { Header, Logo, HeaderRow, HeaderContent } from '../../../../components';
 import cn from "classnames/bind";
-import styles from '@styles/components/layout/header/index.scss';
+import styles from '../../../components/layout/header/index.scss';
 const cx = cn.bind(styles);
 
 

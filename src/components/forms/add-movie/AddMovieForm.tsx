@@ -1,6 +1,6 @@
 import React from "react";
 import { FastField, FieldProps } from 'formik';
-import { FormInput,  } from '@components';
+import { FormInput,  } from '../../../components';
 import { MOVIE_FORM_FIELDS } from '../fields';
 
 export interface AddMovieFields {

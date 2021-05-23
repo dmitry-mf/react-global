@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import cn from "classnames/bind";
-import styles from '@styles/components/ui-kit/dropdown-menu/index.scss';
+import styles from '../../../styles/components/ui-kit/dropdown-menu/index.module.scss';
 import { DropdownItemModel, DropdownItem } from './DropdownItem';
 import { useOnClickOutside } from '../../../hooks';
 

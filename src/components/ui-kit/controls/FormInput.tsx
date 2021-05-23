@@ -1,8 +1,8 @@
 import React from "react";
 import { FieldInputProps, FieldMetaProps } from 'formik';
 import cn from "classnames/bind";
-import styles from '@styles/components/index.scss';
-import { Input } from '@components';
+import styles from '../../../styles/components/index.module.scss';
+import { Input } from '../../../components';
 const cx = cn.bind(styles);
 
 export const FormInput: React.FC<{

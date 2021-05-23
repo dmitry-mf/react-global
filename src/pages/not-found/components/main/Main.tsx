@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Main, Headline, Button } from '@components';
+import Link from 'next/link'
+import { Main, Headline, Button } from '../../../../components';
 import cn from "classnames/bind";
-import styles from '@styles/components/index.scss';
+import styles from '../../../components/index.scss';
 const cx = cn.bind(styles);
 
 export const NotFoundMain: React.FC<{}> = () => {

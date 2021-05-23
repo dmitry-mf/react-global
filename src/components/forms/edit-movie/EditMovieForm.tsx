@@ -1,8 +1,8 @@
 import React from "react";
 import { FastField, FieldProps } from 'formik';
 import cn from "classnames/bind";
-import styles from '@styles/components/index.scss';
-import { FormInput  } from '@components';
+import styles from '../../../styles/components/index.module.scss';
+import { FormInput  } from '../../../components';
 import { MOVIE_FORM_FIELDS } from '../fields';
 const cx = cn.bind(styles);
 

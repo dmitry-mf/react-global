@@ -1,7 +1,7 @@
 import React from "react";
 import cn from "classnames/bind";
-import { Button } from '@components';
-import styles from '@styles/components/layout/header/index.scss';
+import { Button } from '../../../components';
+import styles from '../../../styles/components/layout/header/index.module.scss';
 const cx = cn.bind(styles);
 
 export const ModalFooterContainer: React.FC<{

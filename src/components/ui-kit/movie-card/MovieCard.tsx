@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from "react";
 import cn from "classnames/bind";
-import styles from '@styles/components/index.scss';
-import { Label, ActionsButton } from '@components';
+import styles from '../../../styles/components/index.module.scss';
+import { Label, ActionsButton } from '../../../components';
 import { MovieData } from '../../../services/HomeService';
 import { DropdownMenu } from "../dropdown-menu";
 const cx = cn.bind(styles);

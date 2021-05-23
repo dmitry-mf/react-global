@@ -7,8 +7,8 @@ import {
     ModalFooterContainer,
     Close,
     Button,
-} from '@components';
-import styles from '@styles/components/layout/header/index.scss';
+} from '../../../components';
+import styles from '../../../styles/components/layout/header/index.module.scss';
 const cx = cn.bind(styles);
 
 const ConfirmationDialogContent: React.FC<{}> = ({children}) => {

@@ -1,6 +1,6 @@
 @use './variables/palette' as *;
 
-* {
+.html {
     box-sizing: border-box;
 
     ul {
@@ -10,20 +10,22 @@
     }
 }
 
-html, body {
+.html, .body {
     padding: 0;
     margin: 0;
     font-size: 16px;
     font-family: sans-serif;
 }
 
-html {
+.html {
     background-color: $emperor;
 }
 
-h2 {
-    font-weight: normal;
-    margin: 0;
+.html {
+    h2 {
+        font-weight: normal;
+        margin: 0;
+    }
 }
 
 .padding-0 {
